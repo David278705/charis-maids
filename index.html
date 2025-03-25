@@ -1,785 +1,272 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Charis - Painting & Remodeling</title>
-
+    <title>Charis Maids - House Cleaning Service</title>
     <!-- Fuente Montserrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="icon" type="image/svg+xml" href="./assets/img/logo.ico" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://s3-media0.fl.yelpcdn.com/bphoto/O8XqGs_D2adfz0_qT8lPPQ/348s.jpg"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
       rel="stylesheet"
     />
-
     <!-- Tailwind CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
-
-    <!-- Estilos personalizados o en un .css aparte -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-      /* ------------------------------------------------------------------
-         Fuente base
-      ------------------------------------------------------------------ */
+      /* Estilos globales */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
       body {
         font-family: "Montserrat", sans-serif;
+        overflow-x: hidden;
       }
 
-      /* ------------------------------------------------------------------
-         Clases de color (puedes ajustarlas si gustas)
-      ------------------------------------------------------------------ */
-      .color-primary {
-        color: #456aac;
-      }
-      .color-secondary {
-        color: #2a3b5b;
-      }
-      .bg-color-primary {
-        background-color: #456aac;
-      }
-      .bg-color-secondary {
-        background-color: #2a3b5b;
-      }
-
-      .bg-white-transparent {
-        background-color: rgba(255, 255, 255, 0.9);
-      }
-
-      /* ------------------------------------------------------------------
-         Preloader (transición de "pintura")
-      ------------------------------------------------------------------ */
+      /* Preloader */
       #preloader {
-        animation: removePaint 1s ease-in-out forwards;
-        animation-delay: 1s; /* Retrasa el inicio de la animación por 1 segundo */
-        z-index: 50;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+        transition: opacity 1s ease;
       }
-      @keyframes removePaint {
-        0% {
-          transform: translateY(0);
-        }
-        100% {
-          transform: translateY(-100%);
-        }
-      }
-
-      /* ------------------------------------------------------------------
-         Hero con zoom out suave
-      ------------------------------------------------------------------ */
-      .hero-image {
-        transform: scale(1.1);
-        transition: transform 1.8s ease-in-out;
-      }
-      .hero-loaded {
-        transform: scale(1);
-      }
-
-      /* ------------------------------------------------------------------
-         Header
-         - Se oculta al scrollear hacia abajo (usamos -translate-y-full).
-         - Se muestra al scrollear hacia arriba.
-         - Transición suave en transform, background, etc.
-      ------------------------------------------------------------------ */
-      .header-transition {
-        transition: background-color 0.3s ease-in-out,
-          backdrop-filter 0.3s ease-in-out, transform 0.3s ease-in-out;
-      }
-
-      /* ------------------------------------------------------------------
-         Diferentes estados del header
-      ------------------------------------------------------------------ */
-
-      /* Cuando el header está sobre el hero:
-         - Todo se ve en blanco (logo, links).
-         - Usamos un "filtro" al logo para que se vea blanco
-           incluso si su imagen original es azul.
-      */
-      .on-hero a,
-      .on-hero button,
-      .on-hero li {
-        color: #fff !important;
-      }
-      .logo-white {
-        filter: brightness(0) invert(1); /* Convierte una imagen azul a blanco */
-      }
-
-      /* ------------------------------------------------------------------
-         Menú y contenido "off-canvas" en mobile
-      ------------------------------------------------------------------ */
-      /* El contenedor principal que será "empujado" */
-      #pageWrapper {
-        transition: transform 0.3s ease-in-out; /* Suave */
-      }
-
-      /* Menú hamburguesa deslizable a la derecha,
-         por defecto está oculto (translateX(100%)) */
-      #mobileNav {
-        width: 50%; /* Ocupa la mitad derecha en mobile */
-        transition: transform 0.3s ease-in-out;
-        transform: translateX(100%);
-      }
-      /* Ajustes al contenedor */
-      .testimonial-carousel-container {
-        height: 300px; /* Altura fija en escritorio */
-      }
-
-      /* Slides con transiciones suaves */
-      .testimonial-slide {
-        transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+      #preloader.fade-out {
         opacity: 0;
       }
+      .preloader-content {
+        position: relative;
+        width: 150px;
+        height: 150px;
+      }
+      .preloader-content .logo {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .cleaner-animation {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #cccccc, #eaeaea);
+        border-radius: 20px;
+        transform: skewX(-20deg);
+        animation: sweep 2s ease-in-out forwards;
+      }
+      @keyframes sweep {
+        0% {
+          left: -100%;
+        }
+        50% {
+          left: 0%;
+        }
+        100% {
+          left: 100%;
+        }
+      }
+      .logo.sparkle {
+        position: relative;
+        animation: sparkles 1s ease-in-out 0s 1 normal forwards;
+      }
+      @keyframes sparkles {
+        0% {
+          filter: brightness(1);
+          transform: scale(1);
+        }
+        25% {
+          filter: brightness(1.5);
+        }
+        50% {
+          transform: scale(1.05);
+          filter: brightness(1.06);
+        }
+        75% {
+          filter: brightness(1);
+        }
+        100% {
+          filter: brightness(1);
+          transform: scale(1);
+        }
+      }
+      .logo.dirty {
+        filter: blur(1.5px);
+      }
 
-      /* Posiciones 3D en escritorio */
-      .slide-center {
-        opacity: 1;
-        transform: translateX(-50%) scale(1);
-        z-index: 10;
-      }
-      .slide-left {
-        opacity: 0.7;
-        transform: translateX(-170%) scale(0.8);
-        z-index: 5;
-      }
-      .slide-right {
-        opacity: 0.7;
-        transform: translateX(70%) scale(0.8);
-        z-index: 5;
+      /* Main Content */
+      #main-content {
+        display: none; /* Se muestra cuando finaliza el preloader */
       }
 
-      /* MEDIA QUERY para pantallas <= 767px (móvil) */
-      @media (max-width: 767px) {
-        .testimonial-carousel-container {
-          height: auto; /* Se adapta al contenido */
+      /* Hero Section */
+      .hero {
+        height: 100vh;
+        width: 100%;
+        background: linear-gradient(135deg, #4facfe, #00f2fe);
+        animation: fadeInBackground 1s ease-in-out;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+      @keyframes fadeInBackground {
+        from {
+          opacity: 0;
         }
-        .testimonial-slide {
-          position: static; /* Quita el absolute */
-          transform: none; /* Sin transform */
-          opacity: 1; /* Todas visibles */
-          margin: 0 auto 1.5rem;
-          width: 100%; /* Ocupa todo el ancho (o ajusta a tu gusto) */
-          max-width: 400px; /* Ancho máximo */
+        to {
+          opacity: 1;
         }
-        /* Quita las clases 3D en móvil (o déjalas inoperantes) */
-        .slide-left,
-        .slide-center,
-        .slide-right {
-          transform: none !important;
-          opacity: 1 !important;
+      }
+      .hero-content {
+        text-align: center;
+        color: #fff;
+        animation: fadeInUp 1s ease-out;
+      }
+      @keyframes fadeInUp {
+        from {
+          transform: translateY(20px);
+          opacity: 0;
         }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      .hero-content img {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 20px;
+        border: 5px solid rgba(255, 255, 255, 0.8);
+      }
+      .hero-info h1 {
+        font-size: 3em;
+        margin-bottom: 10px;
+      }
+      .hero-info p {
+        font-size: 1.2em;
+      }
+
+      /* Secciones generales */
+      section {
+        padding: 60px 20px;
+        margin: 0 auto;
+      }
+      section h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #333;
+      }
+      section p {
+        font-size: 1.1em;
+        color: #555;
+        line-height: 1.6;
+        text-align: center;
       }
     </style>
   </head>
-
-  <body class="overflow-x-hidden">
-    <!-- Preloader: Cubierta de “pintura” inicial -->
-    <div
-      id="preloader"
-      class="fixed inset-0 bg-white flex items-center justify-center"
-    >
-      <img src="./assets/img/logo.png" alt="Cargando..." class="w-45" />
+  <body>
+    <!-- Preloader -->
+    <div id="preloader">
+      <div class="preloader-content">
+        <img
+          src="https://s3-media0.fl.yelpcdn.com/bphoto/O8XqGs_D2adfz0_qT8lPPQ/348s.jpg"
+          alt="Charis Maids Logo"
+          class="logo dirty"
+        />
+      </div>
     </div>
 
-    <!-- Contenedor que se "empujará" con el menú lateral -->
-    <div id="pageWrapper" class="relative min-h-screen">
-      <!-- Header (Nav) -->
-      <header
-        id="mainHeader"
-        class="fixed w-full top-0 left-0 flex items-center justify-between px-8 py-4 header-transition z-30 bg-white-transparent transform transition-transform duration-300"
-      >
-        <!-- Logo -->
-        <div class="text-2xl font-bold">
-          <!-- Ajusta la ruta y tamaño de tu logo -->
-          <a href="/">
-            <img
-              src="./assets/img/logo.png"
-              alt="Logo"
-              id="headerLogo"
-              class="w-14"
-            />
-          </a>
-        </div>
-
-        <!-- Navegación normal (oculta en mobile) -->
-        <nav>
-          <ul
-            id="navList"
-            class="hidden md:flex space-x-6 font-semibold color-primary"
-          >
-            <li>
-              <a href="#about" class="hover:underline">About</a>
-            </li>
-            <li>
-              <a href="#services" class="hover:underline">Services</a>
-            </li>
-            <li>
-              <a href="#testimonials" class="hover:underline">Testimonials</a>
-            </li>
-            <li>
-              <a href="#location" class="hover:underline">Location</a>
-            </li>
-          </ul>
-        </nav>
-
-        <!-- Botón Burger (solo aparece en móvil) -->
-        <div class="md:hidden">
-          <button
-            id="menuBtn"
-            class="focus:outline-none color-primary"
-            aria-label="Abrir menú"
-          >
-            <!-- Ícono “burger” -->
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
-        </div>
-      </header>
-
-      <!-- Hero Section -->
-      <section
-        id="hero"
-        class="relative h-screen w-full flex items-center justify-center overflow-hidden"
-      >
-        <!-- Imagen de fondo con zoom inicial -->
-        <div
-          class="absolute inset-0 bg-cover bg-center hero-image"
-          style="
-            background-image: url('https://www.repro-tableaux.com/kunst/edouard_manet_739/Landhaus-in-Rueil.jpg');
-          "
-        ></div>
-
-        <!-- Oscurecer el fondo -->
-        <div class="absolute inset-0 bg-black bg-opacity-30"></div>
-
-        <!-- Contenido principal del hero -->
-        <div class="relative z-10 text-center text-white px-4">
-          <h1 class="text-5xl md:text-6xl font-bold mb-4">
-            Give Your Space New Life
-          </h1>
-          <p class="text-xl md:text-2xl mb-8">
-            Professional painting with a top-quality finish.
-          </p>
-          <button
-            class="bg-color-primary hover:bg-color-secondary text-white font-bold py-2 px-4 rounded transition-colors"
-          >
-            Get a Quote
-          </button>
-        </div>
-      </section>
-
-      <!-- About Section -->
-      <section id="about" class="py-12 px-4">
-        <div class="max-w-7xl mx-auto space-y-16">
-          <!-- First row (Image left, text right) -->
-          <div class="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <img
-                src="https://paintkings.com/wp-content/uploads/2013/10/Interior20Paint.jpg"
-                alt="About Charis Painting"
-                class="w-full rounded shadow"
-              />
-            </div>
-            <div>
-              <h2 class="text-3xl md:text-4xl font-bold mb-4 color-primary">
-                About Charis Painting & Remodeling
-              </h2>
-              <p class="color-secondary leading-relaxed">
-                At Charis Painting & Remodeling, our passion is transforming
-                your home or business into a vibrant, inviting space. With years
-                of experience and a commitment to excellence, we work tirelessly
-                to exceed your expectations. Our dedicated team uses only
-                premium materials and cutting-edge techniques, ensuring a finish
-                that lasts for years.
-              </p>
-            </div>
-          </div>
-
-          <!-- Second row (Image right, text left) -->
-          <div class="grid md:grid-cols-2 gap-8 items-center">
-            <div class="order-2 md:order-1">
-              <h2 class="text-3xl md:text-4xl font-bold mb-4 color-primary">
-                Our Commitment to Quality
-              </h2>
-              <p class="color-secondary leading-relaxed">
-                We believe every space deserves meticulous attention to detail.
-                Whether you're looking for a fresh coat of paint or a
-                comprehensive remodel, we approach every project with care and
-                professionalism. Trust Charis Painting & Remodeling to deliver
-                outstanding results on time and on budget.
-              </p>
-            </div>
-            <div class="order-1 md:order-2">
-              <img
-                src="https://arizonahomepainting.com/wp-content/uploads/2024/04/home-painting-services-fountain-hills.jpeg"
-                alt="Remodeling Work"
-                class="w-full rounded shadow"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- Services Section -->
-      <section id="services" class="py-12 px-4 bg-gray-100">
-        <div class="max-w-7xl mx-auto">
-          <h2
-            class="text-3xl md:text-4xl font-bold mb-8 text-center color-primary"
-          >
-            Our Services
-          </h2>
-          <p class="max-w-xl mx-auto text-center text-gray-600 mb-12">
-            We offer a comprehensive range of services to help transform your
-            space into something you’ll truly love.
-          </p>
-
-          <!-- Services Cards -->
-          <div class="grid md:grid-cols-3 gap-8">
-            <!-- Card 1 -->
-            <div class="bg-white rounded shadow p-6 text-center">
-              <img
-                src="https://static.vecteezy.com/system/resources/thumbnails/005/152/307/small_2x/home-and-love-animated-line-icon-suitable-animated-for-love-home-application-free-video.jpg"
-                alt="Interior & Exterior Painting"
-                class="w-full h-48 object-cover rounded mb-4"
-              />
-              <h3 class="text-xl font-bold color-primary mb-2">
-                Interior & Exterior Painting
-              </h3>
-              <p class="color-secondary">
-                High-quality paint that lasts, with precise detail and flawless
-                finishes.
-              </p>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="bg-white rounded shadow p-6 text-center">
-              <img
-                src="https://static.vecteezy.com/system/resources/thumbnails/005/152/307/small_2x/home-and-love-animated-line-icon-suitable-animated-for-love-home-application-free-video.jpg"
-                alt="Remodeling & Renovation"
-                class="w-full h-48 object-cover rounded mb-4"
-              />
-              <h3 class="text-xl font-bold color-primary mb-2">
-                Remodeling & Renovation
-              </h3>
-              <p class="color-secondary">
-                From kitchen and bathroom makeovers to full-home renovations, we
-                bring your vision to life.
-              </p>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="bg-white rounded shadow p-6 text-center">
-              <img
-                src="https://static.vecteezy.com/system/resources/thumbnails/005/152/307/small_2x/home-and-love-animated-line-icon-suitable-animated-for-love-home-application-free-video.jpg"
-                alt="Surface Repair & Preparation"
-                class="w-full h-48 object-cover rounded mb-4"
-              />
-              <h3 class="text-xl font-bold color-primary mb-2">
-                Surface Repair & Preparation
-              </h3>
-              <p class="color-secondary">
-                We prep every surface meticulously for a smooth, long-lasting
-                finish.
-              </p>
-            </div>
-
-            <!-- Card 4 -->
-            <div class="bg-white rounded shadow p-6 text-center">
-              <img
-                src="https://static.vecteezy.com/system/resources/thumbnails/005/152/307/small_2x/home-and-love-animated-line-icon-suitable-animated-for-love-home-application-free-video.jpg"
-                alt="Custom Designs"
-                class="w-full h-48 object-cover rounded mb-4"
-              />
-              <h3 class="text-xl font-bold color-primary mb-2">
-                Custom Designs
-              </h3>
-              <p class="color-secondary">
-                Personalized solutions to fit your style, needs, and budget.
-              </p>
-            </div>
-
-            <!-- Card 5 -->
-            <div class="bg-white rounded shadow p-6 text-center">
-              <img
-                src="https://static.vecteezy.com/system/resources/thumbnails/005/152/307/small_2x/home-and-love-animated-line-icon-suitable-animated-for-love-home-application-free-video.jpg"
-                alt="Clean & Professional"
-                class="w-full h-48 object-cover rounded mb-4"
-              />
-              <h3 class="text-xl font-bold color-primary mb-2">
-                Clean & Professional
-              </h3>
-              <p class="color-secondary">
-                We treat your space with care, keeping everything tidy and
-                hassle-free.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ======== TESTIMONIOS / OPINIONES DE CLIENTES (Carrusel 3D) ======== -->
-      <section id="testimonials" class="py-12 px-4 bg-white">
-        <div class="max-w-7xl mx-auto">
-          <h2
-            class="text-3xl md:text-4xl font-bold mb-8 text-center color-primary"
-          >
-            Reviews from Our Customers
-          </h2>
-
-          <!-- Main carousel container -->
-          <div
-            id="testimonialCarousel"
-            class="testimonial-carousel-container relative max-w-3xl mx-auto"
-          >
-            <!-- Slide 1 -->
-            <div
-              class="testimonial-slide absolute top-0 left-1/2 w-72 p-6 bg-gray-50 rounded-lg shadow text-center"
-            >
-              <img
-                src="https://randomuser.me/api/portraits/men/1.jpg"
-                alt="Client"
-                class="mx-auto w-20 h-20 rounded-full mb-4 object-cover"
-              />
-              <h3 class="text-xl font-bold color-primary">John Doe</h3>
-              <p class="text-sm color-secondary">
-                Service: Residential Painting
-              </p>
-              <!-- Star rating (5) -->
-              <p class="my-2">
-                <span class="star">&#9733;</span>
-                <span class="star">&#9733;</span>
-                <span class="star">&#9733;</span>
-                <span class="star">&#9733;</span>
-                <span class="star">&#9733;</span>
-              </p>
-              <p class="text-gray-600 italic">
-                “Excellent job! I was very satisfied with the outcome.”
-              </p>
-            </div>
-
-            <!-- Slide 2 -->
-            <div
-              class="testimonial-slide absolute top-0 left-1/2 w-72 p-6 bg-gray-50 rounded-lg shadow text-center"
-            >
-              <img
-                src="https://randomuser.me/api/portraits/women/2.jpg"
-                alt="Client"
-                class="mx-auto w-20 h-20 rounded-full mb-4 object-cover"
-              />
-              <h3 class="text-xl font-bold color-primary">Jane Smith</h3>
-              <p class="text-sm color-secondary">
-                Service: Commercial Painting
-              </p>
-              <!-- Star rating (4) -->
-              <p class="my-2">
-                <span class="star">&#9733;</span>
-                <span class="star">&#9733;</span>
-                <span class="star">&#9733;</span>
-                <span class="star">&#9733;</span>
-                <span class="text-gray-300">&#9733;</span>
-              </p>
-              <p class="text-gray-600 italic">
-                “Professional and punctual. Recommended for large jobs.”
-              </p>
-            </div>
-
-            <!-- Slide 3 -->
-            <div
-              class="testimonial-slide absolute top-0 left-1/2 w-72 p-6 bg-gray-50 rounded-lg shadow text-center"
-            >
-              <img
-                src="https://randomuser.me/api/portraits/men/3.jpg"
-                alt="Client"
-                class="mx-auto w-20 h-20 rounded-full mb-4 object-cover"
-              />
-              <h3 class="text-xl font-bold color-primary">Carlos Pérez</h3>
-              <p class="text-sm color-secondary">
-                Service: Remodeling & Renovations
-              </p>
-              <!-- Star rating (5) -->
-              <p class="my-2">
-                <span class="star">&#9733;</span>
-                <span class="star">&#9733;</span>
-                <span class="star">&#9733;</span>
-                <span class="star">&#9733;</span>
-                <span class="star">&#9733;</span>
-              </p>
-              <p class="text-gray-600 italic">
-                “My home looks completely different. Thank you for the attention
-                to detail.”
-              </p>
-            </div>
-
-            <!-- Previous button -->
-            <button
-              id="prevBtn"
-              class="absolute left-0 top-1/2 -translate-y-1/2 bg-gray-200 text-gray-700 p-3 rounded-full hover:bg-gray-300 transition-colors z-10 hidden md:block"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-5 h-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-            </button>
-
-            <!-- Next button -->
-            <button
-              id="nextBtn"
-              class="absolute right-0 top-1/2 -translate-y-1/2 bg-gray-200 text-gray-700 p-3 rounded-full hover:bg-gray-300 transition-colors z-10 hidden md:block"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-5 h-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </button>
-          </div>
-          <!-- End main container -->
-        </div>
-      </section>
-
-      <!-- ======== LOCATION / MAP SECTION ======== -->
-      <section id="location" class="py-12 px-4 bg-color-primary">
-        <div class="max-w-7xl mx-auto">
-          <!-- Title -->
-          <h2
-            class="text-3xl md:text-4xl font-bold mb-8 text-center text-white"
-          >
-            Location
-          </h2>
-
-          <!-- Responsive grid: 2 columns on desktop, 1 on mobile.
-               'place-items-center' centers each column horizontally and vertically. -->
-          <div
-            class="grid md:grid-cols-2 gap-6 items-center place-items-center"
-          >
-            <!-- Left Column: Info card, always centered -->
-            <div
-              class="bg-white rounded-lg shadow-md p-6 w-full max-w-md text-center"
-            >
-              <h3 class="text-2xl font-bold color-primary mb-2">Our Office</h3>
-              <p class="text-gray-600 mb-4">
-                1234 Main Street<br />
-                Houston, TX 77000<br />
-                United States
-              </p>
-              <hr class="my-4" />
-              <h4 class="text-xl font-semibold color-primary mb-2">Hours</h4>
-              <p class="text-gray-600">Mon - Fri: 8:00 AM - 6:00 PM</p>
-              <p class="text-gray-600">Sat: 9:00 AM - 2:00 PM</p>
-              <p class="text-gray-600 mb-4">Sunday: Closed</p>
-              <hr class="my-4" />
-              <h4 class="text-xl font-semibold color-primary mb-2">Contact</h4>
-              <p class="text-gray-600">Phone: (123) 456-7890</p>
-              <p class="text-gray-600">Email: info@charispainting.com</p>
-            </div>
-
-            <!-- Right Column: Map, also centered -->
-            <div class="w-full h-96">
-              <iframe
-                class="w-full h-full rounded-lg shadow-md"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3168.9538011901975!2d-122.08385132359186!3d37.38605153974765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fbb01ed3fa2c7%3A0x166e63b622efbe59!2sGoogleplex!5e0!3m2!1ses-419!2sus!4v1606542398452!5m2!1ses-419!2sus"
-                frameborder="0"
-                allowfullscreen
-                loading="lazy"
-              ></iframe>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Galería con Lightbox/Modal -->
-      <section id="gallery" class="py-12 px-4 bg-gray-50">
-        <div class="max-w-7xl mx-auto">
-          <!-- Título -->
-          <h2
-            class="text-3xl md:text-4xl font-bold text-center color-primary mb-6"
-          >
-            Gallery
-          </h2>
-          <p class="text-center text-gray-600 mb-8">
-            Some of our most recent projects
-          </p>
-
-          <!-- Grid de imágenes -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            <!-- Item 1 -->
-            <div
-              class="w-full h-60 overflow-hidden rounded cursor-pointer"
-              onclick="showModal('https://www.repro-tableaux.com/kunst/edouard_manet_739/Landhaus-in-Rueil.jpg')"
-            >
-              <img
-                src="https://www.repro-tableaux.com/kunst/edouard_manet_739/Landhaus-in-Rueil.jpg"
-                alt="Proyecto 1"
-                class="w-full h-full object-cover transform transition-transform duration-300 hover:scale-105"
-              />
-            </div>
-
-            <!-- Item 2 -->
-            <div
-              class="w-full h-60 overflow-hidden rounded cursor-pointer"
-              onclick="showModal('https://www.repro-tableaux.com/kunst/edouard_manet_739/Landhaus-in-Rueil.jpg')"
-            >
-              <img
-                src="https://www.repro-tableaux.com/kunst/edouard_manet_739/Landhaus-in-Rueil.jpg"
-                alt="Proyecto 2"
-                class="w-full h-full object-cover transform transition-transform duration-300 hover:scale-105"
-              />
-            </div>
-
-            <!-- Item 3 -->
-            <div
-              class="w-full h-60 overflow-hidden rounded cursor-pointer"
-              onclick="showModal('https://www.repro-tableaux.com/kunst/edouard_manet_739/Landhaus-in-Rueil.jpg')"
-            >
-              <img
-                src="https://www.repro-tableaux.com/kunst/edouard_manet_739/Landhaus-in-Rueil.jpg"
-                alt="Proyecto 3"
-                class="w-full h-full object-cover transform transition-transform duration-300 hover:scale-105"
-              />
-            </div>
-
-            <!-- Repite más items si gustas -->
-          </div>
-        </div>
-      </section>
-
-      <!-- Modal (Oculto por defecto con "hidden") -->
-      <div
-        id="galleryModal"
-        class="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
-      >
-        <!-- Contenedor de la imagen y botón de cierre -->
-        <div class="relative max-w-4xl mx-auto px-4">
-          <!-- Botón de Cerrar (esquina superior derecha) -->
-          <button
-            class="absolute top-0 right-0 mr-4 text-white text-3xl font-bold focus:outline-none bg-color-primary rounded-lg w-10 h-10 opacity-80 flex items-center justify-center"
-            onclick="closeModal()"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-7"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6 18 18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-
-          <!-- Imagen en grande -->
+    <!-- Contenido principal -->
+    <div id="main-content">
+      <!-- Sección Hero -->
+      <section class="hero" id="home">
+        <div class="hero-content">
           <img
-            id="modalImage"
-            src=""
-            alt="Imagen grande"
-            class="w-full h-auto rounded shadow-lg"
+            src="https://jwiz.com/assets/pictures/96285/photos/jewish/charis-maids-boca-raton-fl-cleaning-services-1718977733.jpg"
+            alt="Profile Picture"
           />
+          <div class="hero-info">
+            <h1>Welcome to Charis Maids</h1>
+            <p>
+              My name is Charis, and I lead a high-quality house cleaning
+              service. We are dedicated to leaving every home spotless and
+              refreshed.
+            </p>
+          </div>
         </div>
-      </div>
-    </div>
-    <!-- Fin de pageWrapper -->
+      </section>
 
-    <!-- Menú Móvil (Empuja la página a la izquierda al abrir) -->
-    <div
-      id="mobileNav"
-      class="fixed top-0 right-0 h-full bg-color-primary z-50 flex flex-col p-6"
-    >
-      <!-- Botón de Cerrar (esquina sup derecha) -->
-      <div class="text-right mb-6">
-        <button
-          id="closeMenuBtn"
-          class="text-2xl font-bold text-white focus:outline-none"
-          aria-label="Cerrar menú"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="w-7"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M6 18 18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
-      </div>
+      <!-- Sección About -->
+      <section id="about">
+        <h2>About Us</h2>
+        <p>
+          At Charis Maids, we believe in delivering excellence in every
+          cleaning. Our experienced team is committed to making your home shine.
+        </p>
+      </section>
 
-      <!-- Opciones del Menú -->
-      <ul class="flex-1 flex flex-col items-center justify-center space-y-8">
-        <li>
-          <a href="#about" class="text-2xl font-semibold text-white">Home</a>
-        </li>
-        <li>
-          <a href="#services" class="text-2xl font-semibold text-white"
-            >Services</a
-          >
-        </li>
-        <li>
-          <a href="#testimonials" class="text-2xl font-semibold text-white"
-            >Contact</a
-          >
-        </li>
-        <li>
-          <a href="#location" class="text-2xl font-semibold text-white"
-            >Location</a
-          >
-        </li>
-      </ul>
+      <!-- Sección Services -->
+      <section id="services">
+        <h2>Our Services</h2>
+        <p>
+          We offer a range of cleaning services tailored to your needs,
+          including regular housekeeping, deep cleaning, and special event
+          cleaning.
+        </p>
+      </section>
+
+      <!-- Sección Contact -->
+      <section id="contact">
+        <h2>Contact Us</h2>
+        <p>
+          Get in touch with us today to schedule a cleaning or request a free
+          quote. We are here to serve you!
+        </p>
+      </section>
     </div>
 
-    <!-- Script principal -->
     <script>
-      function showModal(imageSrc) {
-        const modal = document.getElementById("galleryModal");
-        const modalImg = document.getElementById("modalImage");
-        modalImg.src = imageSrc;
-        modal.classList.remove("hidden");
-      }
+      // Preloader
+      document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+          const preloader = document.getElementById("preloader");
+          preloader.classList.add("fade-out");
+          setTimeout(function () {
+            preloader.style.display = "none";
+            document.getElementById("main-content").style.display = "block";
+          }, 500);
+        }, 2000);
 
-      function closeModal() {
-        const modal = document.getElementById("galleryModal");
-        modal.classList.add("hidden");
-      }
+        // Quitar efecto sucio y agregar brillo al logo
+        setTimeout(function () {
+          const logo = document.querySelector(".logo");
+          logo.classList.remove("dirty");
+          logo.classList.add("sparkle");
+        }, 100);
+      });
     </script>
-    <script src="main.js"></script>
   </body>
 </html>
