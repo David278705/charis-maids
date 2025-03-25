@@ -15,12 +15,13 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS (CDN) -->
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <style>
       /* Estilos globales */
       * {
@@ -55,8 +56,8 @@
       }
       .preloader-content {
         position: relative;
-        width: 150px;
-        height: 150px;
+        width: 250px;
+        height: 250px;
       }
       .preloader-content .logo {
         width: 100%;
@@ -118,72 +119,46 @@
         display: none; /* Se muestra cuando finaliza el preloader */
       }
 
-      /* Hero Section */
-      .hero {
-        height: 100vh;
-        width: 100%;
-        background: linear-gradient(135deg, #4facfe, #00f2fe);
-        animation: fadeInBackground 1s ease-in-out;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-      }
-      @keyframes fadeInBackground {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-      .hero-content {
-        text-align: center;
+      /* Encabezado "Licenciado y Asegurado" */
+      .topbar {
+        background-color: #0052cc;
         color: #fff;
-        animation: fadeInUp 1s ease-out;
-      }
-      @keyframes fadeInUp {
-        from {
-          transform: translateY(20px);
-          opacity: 0;
-        }
-        to {
-          transform: translateY(0);
-          opacity: 1;
-        }
-      }
-      .hero-content img {
-        width: 180px;
-        height: 180px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-bottom: 20px;
-        border: 5px solid rgba(255, 255, 255, 0.8);
-      }
-      .hero-info h1 {
-        font-size: 3em;
-        margin-bottom: 10px;
-      }
-      .hero-info p {
-        font-size: 1.2em;
+        text-align: center;
+        padding: 0.5rem;
+        font-size: 0.9rem;
       }
 
-      /* Secciones generales */
-      section {
-        padding: 60px 20px;
-        margin: 0 auto;
-      }
-      section h2 {
-        font-size: 2em;
-        margin-bottom: 20px;
+      /* Hero Section con imágenes distintas en desktop y mobile */
+      .hero {
+        position: relative;
+        width: 100%;
+        min-height: 65vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         text-align: center;
-        color: #333;
+        color: #fff;
       }
-      section p {
-        font-size: 1.1em;
-        color: #555;
-        line-height: 1.6;
-        text-align: center;
+      /* Imagen para escritorio */
+      .hero-desktop {
+        background: url("hero-desktop.png") no-repeat center center/cover;
+      }
+      /* Imagen para móvil */
+      .hero-mobile {
+        background: url("hero-mobile.png") no-repeat center center/cover;
+      }
+
+      @media (min-width: 768px) {
+        /* En desktop, mostramos la versión desktop y ocultamos la mobile */
+        .hero-mobile {
+          display: none;
+        }
+      }
+      @media (max-width: 767px) {
+        /* En mobile, mostramos la versión mobile y ocultamos la desktop */
+        .hero-desktop {
+          display: none;
+        }
       }
     </style>
   </head>
@@ -201,51 +176,347 @@
 
     <!-- Contenido principal -->
     <div id="main-content">
-      <!-- Sección Hero -->
-      <section class="hero" id="home">
-        <div class="hero-content">
-          <img
-            src="https://jwiz.com/assets/pictures/96285/photos/jewish/charis-maids-boca-raton-fl-cleaning-services-1718977733.jpg"
-            alt="Profile Picture"
-          />
-          <div class="hero-info">
-            <h1>Welcome to Charis Maids</h1>
-            <p>
-              My name is Charis, and I lead a high-quality house cleaning
-              service. We are dedicated to leaving every home spotless and
-              refreshed.
+      <!-- Barra superior (opcional) -->
+      <div class="topbar">
+        We are Licensed and Insured! Call us for a Free Estimate.
+      </div>
+
+      <!-- Hero Section (Imagen Desktop & Móvil) -->
+      <section class="hero w-full">
+        <!-- Versión Desktop -->
+        <div
+          class="hero-desktop w-full flex flex-col items-center justify-center py-20 px-4"
+        >
+          <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">
+              Welcome to Charis Maids!
+            </h1>
+            <p class="text-xl mb-6">
+              Trusted. Licensed. Insured. Exceptional Service.
             </p>
+            <!-- Info Rápida -->
+            <div
+              class="flex flex-col md:flex-row md:space-x-6 items-center justify-center text-lg font-semibold"
+            >
+              <span>(631) 630-8041</span>
+              <span>(561) 710-0184</span>
+              <span>5 Star Service</span>
+              <span>20+ Years Experience</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Versión Móvil -->
+        <div
+          class="hero-mobile w-full flex flex-col items-center justify-center py-16 px-4"
+        >
+          <div class="max-w-md mx-auto">
+            <h1 class="text-3xl font-bold mb-4">Welcome to Charis Maids!</h1>
+            <p class="text-lg mb-4">Trusted. Licensed. Insured.</p>
+            <div class="flex flex-col space-y-2 text-base font-semibold">
+              <span>(631) 630-8041</span>
+              <span>(561) 710-0184</span>
+              <span>5 Star Service</span>
+              <span>20+ Years Experience</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- Sección About -->
-      <section id="about">
-        <h2>About Us</h2>
-        <p>
-          At Charis Maids, we believe in delivering excellence in every
-          cleaning. Our experienced team is committed to making your home shine.
-        </p>
+      <!-- About Section -->
+      <section class="py-12 bg-gray-100">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold mb-4">
+              About Charis Maids – The Best Cleaning Service in The Hamptons
+            </h2>
+            <p class="text-gray-600 leading-relaxed">
+              Charis Maids has over 20 years of experience providing top-notch
+              housekeeping and cleaning services. We’re committed to delivering
+              an exceptional clean you can trust.
+            </p>
+          </div>
+          <!-- Imagen y texto -->
+          <div class="flex flex-col md:flex-row items-center md:space-x-8">
+            <div class="mb-6 md:mb-0 md:w-1/2">
+              <img
+                class="rounded-lg w-full object-cover"
+                src="https://via.placeholder.com/600x400"
+                alt="Charis Maids Staff"
+              />
+            </div>
+            <div class="md:w-1/2 space-y-4 text-gray-700">
+              <p>
+                Our trained and reliable staff use eco-friendly products and
+                methods to ensure your home or office not only looks clean but
+                is also healthy for your family and pets.
+              </p>
+              <p>
+                Your satisfaction is our top priority. Whether you need a
+                one-time deep clean or recurring services, we tailor our
+                approach to meet your unique needs.
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <!-- Sección Services -->
-      <section id="services">
-        <h2>Our Services</h2>
-        <p>
-          We offer a range of cleaning services tailored to your needs,
-          including regular housekeeping, deep cleaning, and special event
-          cleaning.
-        </p>
+      <!-- Our Cleaning Services Section -->
+      <section class="py-12">
+        <div class="max-w-6xl mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center mb-8">
+            Our Cleaning Services
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Housekeeping Services -->
+            <div class="p-6 border rounded shadow-sm">
+              <img
+                src="https://via.placeholder.com/400x250"
+                alt="Housekeeping Services"
+                class="rounded mb-4 w-full object-cover"
+              />
+              <h3 class="text-xl font-semibold mb-2">Housekeeping Services</h3>
+              <ul class="list-disc list-inside text-gray-600">
+                <li>Kitchen and Bath</li>
+                <li>Floors and Surfaces</li>
+                <li>Basic Decluttering</li>
+              </ul>
+            </div>
+
+            <!-- Post Construction Cleaning -->
+            <div class="p-6 border rounded shadow-sm">
+              <img
+                src="https://via.placeholder.com/400x250"
+                alt="Post Construction Cleaning"
+                class="rounded mb-4 w-full object-cover"
+              />
+              <h3 class="text-xl font-semibold mb-2">
+                Post Construction Cleaning
+              </h3>
+              <ul class="list-disc list-inside text-gray-600">
+                <li>Dust Removal</li>
+                <li>Safe Debris Disposal</li>
+                <li>High-Traffic Areas Sanitization</li>
+              </ul>
+            </div>
+
+            <!-- Deep Cleaning -->
+            <div class="p-6 border rounded shadow-sm">
+              <img
+                src="https://via.placeholder.com/400x250"
+                alt="Deep Cleaning"
+                class="rounded mb-4 w-full object-cover"
+              />
+              <h3 class="text-xl font-semibold mb-2">Deep Cleaning</h3>
+              <ul class="list-disc list-inside text-gray-600">
+                <li>Kitchen & Appliances</li>
+                <li>New Construction Sites</li>
+                <li>Seasonal Cleanups</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Segunda línea de servicios -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+            <!-- Office Cleaning -->
+            <div class="p-6 border rounded shadow-sm">
+              <img
+                src="https://via.placeholder.com/400x250"
+                alt="Office Cleaning"
+                class="rounded mb-4 w-full object-cover"
+              />
+              <h3 class="text-xl font-semibold mb-2">Office Cleaning</h3>
+              <ul class="list-disc list-inside text-gray-600">
+                <li>Workstation & Desk Tidy</li>
+                <li>Sanitizing High-Touch Surfaces</li>
+                <li>Trash Removal</li>
+              </ul>
+            </div>
+
+            <!-- House Cleaning -->
+            <div class="p-6 border rounded shadow-sm">
+              <img
+                src="https://via.placeholder.com/400x250"
+                alt="House Cleaning"
+                class="rounded mb-4 w-full object-cover"
+              />
+              <h3 class="text-xl font-semibold mb-2">House Cleaning</h3>
+              <ul class="list-disc list-inside text-gray-600">
+                <li>Weekly Cleaning</li>
+                <li>Monthly Cleaning</li>
+                <li>Special Event Services</li>
+              </ul>
+            </div>
+
+            <!-- Home Organizing -->
+            <div class="p-6 border rounded shadow-sm">
+              <img
+                src="https://via.placeholder.com/400x250"
+                alt="Home Organizing"
+                class="rounded mb-4 w-full object-cover"
+              />
+              <h3 class="text-xl font-semibold mb-2">Home Organizing</h3>
+              <ul class="list-disc list-inside text-gray-600">
+                <li>Room Reconfiguration</li>
+                <li>New Construction Setup</li>
+                <li>Closet & Storage Solutions</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <!-- Sección Contact -->
-      <section id="contact">
-        <h2>Contact Us</h2>
-        <p>
-          Get in touch with us today to schedule a cleaning or request a free
-          quote. We are here to serve you!
-        </p>
+      <!-- Qué nos diferencia -->
+      <section class="py-12 bg-gray-100">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+          <h2 class="text-3xl font-bold mb-4">What Sets Charis Maids Apart?</h2>
+          <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="p-6 rounded bg-white shadow-sm">
+              <h3 class="text-xl font-semibold mb-2">1. Professional Crew</h3>
+              <p class="text-gray-600">
+                Highly trained and dedicated cleaners who deliver impeccable
+                results.
+              </p>
+            </div>
+            <div class="p-6 rounded bg-white shadow-sm">
+              <h3 class="text-xl font-semibold mb-2">2. Tailored Cleaning</h3>
+              <p class="text-gray-600">
+                Customizable services to address your exact needs for a spotless
+                environment.
+              </p>
+            </div>
+            <div class="p-6 rounded bg-white shadow-sm">
+              <h3 class="text-xl font-semibold mb-2">
+                3. Eco-Friendly Practices
+              </h3>
+              <p class="text-gray-600">
+                We use premium, eco-conscious supplies making every cleaning
+                safe for your family & pets.
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
+
+      <!-- Sección de reserva -->
+      <section class="py-12">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+          <h2 class="text-3xl font-bold mb-4">
+            Book Your Cleaning Service Today
+          </h2>
+          <p class="text-gray-700 mb-6">
+            Get in touch with us to schedule your next cleaning or request a
+            free estimate.
+          </p>
+          <a
+            href="#contact"
+            class="inline-block bg-blue-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-700 transition"
+          >
+            GET AN ESTIMATE
+          </a>
+          <p class="mt-4 font-semibold">OR Call Us: (631) 630-8041</p>
+        </div>
+      </section>
+
+      <!-- Sección productos no tóxicos -->
+      <section class="py-12 bg-gray-100">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+          <h2 class="text-2xl md:text-3xl font-bold mb-4">
+            We use only Non Toxic &amp; Non Allergenic Cleaning Products and
+            Methods
+          </h2>
+          <p class="text-gray-700 mb-6">
+            Our goal is to ensure that not only does your home shine, but it’s
+            also safe for you, your family, and the environment.
+          </p>
+          <div class="flex justify-center">
+            <img
+              src="https://via.placeholder.com/400x300"
+              alt="Eco Friendly Cleaning"
+              class="w-full md:w-1/2 rounded shadow"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section class="py-12">
+        <div class="max-w-6xl mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center mb-8">Testimonials</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="p-6 bg-gray-50 rounded shadow">
+              <p class="text-gray-700 italic mb-4">
+                "Charis Maids exceeded my expectations! Their attention to
+                detail is unbelievable."
+              </p>
+              <h4 class="font-semibold">- Michael Anderson</h4>
+            </div>
+            <div class="p-6 bg-gray-50 rounded shadow">
+              <p class="text-gray-700 italic mb-4">
+                "I recommend Charis Maids to everyone. Their professionals are
+                truly exceptional."
+              </p>
+              <h4 class="font-semibold">- Emily Rivera</h4>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA final -->
+      <section class="py-12 bg-gray-200">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+          <h2 class="text-2xl md:text-3xl font-bold mb-4">
+            Get Your Home Sparkling Clean Now!
+          </h2>
+          <a
+            href="#contact"
+            class="inline-block bg-blue-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-700 transition"
+          >
+            GET AN ESTIMATE
+          </a>
+          <p class="mt-4">
+            Try Charis Maids, you will love us. <br />
+            Questions? (631)630-8041 • (561)710-0184
+          </p>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="bg-gray-900 text-gray-300 py-8">
+        <div
+          class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8"
+        >
+          <div>
+            <h3 class="text-white text-xl font-bold mb-4">About Us</h3>
+            <p class="text-sm">
+              Charis Maids is committed to providing a professional, reliable
+              cleaning experience. Licensed &amp; Insured with over 20 years of
+              experience.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-white text-xl font-bold mb-4">Services</h3>
+            <ul class="text-sm space-y-2">
+              <li>House Cleaning</li>
+              <li>Deep Cleaning</li>
+              <li>Post Construction</li>
+              <li>Office Cleaning</li>
+              <li>Home Organizing</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-white text-xl font-bold mb-4">Contact Us</h3>
+            <p class="text-sm">
+              <strong>Phone:</strong> (631) 630-8041 / (561) 710-0184 <br />
+              <strong>Email:</strong> info@charismaids.com <br />
+              <strong>Location:</strong> The Hamptons, NY
+            </p>
+          </div>
+        </div>
+        <div class="text-center mt-6 text-sm text-gray-500">
+          &copy; 2025 Charis Maids
+        </div>
+      </footer>
     </div>
 
     <script>
