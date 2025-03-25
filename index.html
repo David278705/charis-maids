@@ -114,9 +114,17 @@
         filter: blur(1.5px);
       }
 
-      /* Main Content */
+      /* #main-content por defecto (oculto y opaco) */
       #main-content {
-        display: none; /* Se muestra cuando finaliza el preloader */
+        display: none;
+        opacity: 0;
+        transition: opacity 0.8s ease; /* Duración y efecto del fade */
+      }
+
+      /* Clase que usaremos para mostrarlo con fade */
+      #main-content.fade-in {
+        display: block;
+        opacity: 1; /* Hace que aparezca gradualmente */
       }
 
       /* Encabezado "Licenciado y Asegurado" */
@@ -527,7 +535,16 @@
           preloader.classList.add("fade-out");
           setTimeout(function () {
             preloader.style.display = "none";
-            document.getElementById("main-content").style.display = "block";
+
+            // 1) Mostramos el main-content
+            const mainContent = document.getElementById("main-content");
+            mainContent.style.display = "block";
+
+            // 2) Obligamos al navegador a “recalcular” estilos
+            // antes de añadir la clase que sube la opacidad a 1
+            setTimeout(function () {
+              mainContent.classList.add("fade-in");
+            }, 50);
           }, 500);
         }, 2000);
 
