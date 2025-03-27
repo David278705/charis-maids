@@ -145,11 +145,13 @@
       }
       /* Imagen para escritorio */
       .hero-desktop {
-        background: url("hero-desktop.png") no-repeat center center/cover;
+        background: url("/assets/img/bg/bg-hero3.jpg") no-repeat center
+          center/cover;
       }
       /* Imagen para móvil */
       .hero-mobile {
-        background: url("hero-mobile.png") no-repeat center center/cover;
+        background: url("/assets/img/bg/bg-hero3.jpg") no-repeat center
+          center/cover;
       }
 
       @media (min-width: 768px) {
@@ -189,39 +191,64 @@
       <section class="hero w-full">
         <!-- Versión Desktop -->
         <div
-          class="hero-desktop w-full flex flex-col items-center justify-center py-20 px-4"
+          style="min-height: 65vh"
+          class="hero-desktop w-full hidden md:flex items-center justify-center py-20 px-4 bg-white"
         >
-          <div class="max-w-4xl mx-auto">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">
-              Welcome to Charis Maids!
-            </h1>
-            <p class="text-xl mb-6">
-              Trusted. Licensed. Insured. Exceptional Service.
-            </p>
-            <!-- Info Rápida -->
+          <div class="max-w-6xl mx-auto flex items-center space-x-10">
+            <!-- Tarjeta Oscura -->
             <div
-              class="flex flex-col md:flex-row md:space-x-6 items-center justify-center text-lg font-semibold"
+              class="bg-gray-900 text-white p-8 rounded-2xl shadow-xl max-w-xl"
             >
-              <span>(631) 630-8041</span>
-              <span>(561) 710-0184</span>
-              <span>5 Star Service</span>
-              <span>20+ Years Experience</span>
+              <h1 class="text-5xl font-bold mb-4">Welcome to Charis Maids!</h1>
+              <p class="text-xl mb-6">
+                Trusted. Licensed. Insured. Exceptional Service.
+              </p>
+              <div class="flex flex-wrap gap-4 text-lg font-semibold">
+                <span>(631) 630-8041</span>
+                <span>(561) 710-0184</span>
+                <span>5 Star Service</span>
+                <span>20+ Years Experience</span>
+              </div>
+            </div>
+
+            <!-- Imagen de Persona -->
+            <div class="w-80 h-80 overflow-hidden rounded-2xl shadow-lg">
+              <img
+                src="/assets/img/bg/charis-person.jpeg"
+                alt="Charis Maids Team Member"
+                class="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
 
         <!-- Versión Móvil -->
         <div
-          class="hero-mobile w-full flex flex-col items-center justify-center py-16 px-4"
+          style="min-height: 65vh"
+          class="hero-mobile w-full flex flex-col items-center justify-center py-16 px-4 bg-white md:hidden"
         >
-          <div class="max-w-md mx-auto">
-            <h1 class="text-3xl font-bold mb-4">Welcome to Charis Maids!</h1>
-            <p class="text-lg mb-4">Trusted. Licensed. Insured.</p>
-            <div class="flex flex-col space-y-2 text-base font-semibold">
-              <span>(631) 630-8041</span>
-              <span>(561) 710-0184</span>
-              <span>5 Star Service</span>
-              <span>20+ Years Experience</span>
+          <div class="max-w-md mx-auto flex flex-col items-center space-y-6">
+            <!-- Imagen -->
+            <div class="w-60 h-60 overflow-hidden rounded-2xl shadow-md">
+              <img
+                src="/assets/img/bg/charis-person.jpeg"
+                alt="Charis Maids Team Member"
+                class="w-full h-full object-cover"
+              />
+            </div>
+
+            <!-- Tarjeta Oscura -->
+            <div
+              class="bg-gray-900 text-white p-6 rounded-2xl shadow-md text-center w-full"
+            >
+              <h1 class="text-3xl font-bold mb-4">Welcome to Charis Maids!</h1>
+              <p class="text-lg mb-4">Trusted. Licensed. Insured.</p>
+              <div class="flex flex-col space-y-2 text-base font-semibold">
+                <span>(631) 630-8041</span>
+                <span>(561) 710-0184</span>
+                <span>5 Star Service</span>
+                <span>20+ Years Experience</span>
+              </div>
             </div>
           </div>
         </div>
