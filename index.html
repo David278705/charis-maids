@@ -6,11 +6,11 @@
     <!-- Fuente Montserrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="icon" type="image/svg+xml" href="./assets/img/logo.png" />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" type="image/svg+xml" href="./assets/img/logo.png" />
     <!-- Tailwind CSS (CDN) -->
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
@@ -26,7 +26,7 @@
         box-sizing: border-box;
       }
       html {
-        scroll-behavior: smooth;
+        scroll-behavior: smooth; /* desplazamiento suave al dar clic en los enlaces de navegación */
       }
       body {
         font-family: "Montserrat", sans-serif;
@@ -116,7 +116,6 @@
         opacity: 0;
         transition: opacity 0.8s ease; /* Duración y efecto del fade */
       }
-
       /* Clase que usaremos para mostrarlo con fade */
       #main-content.fade-in {
         display: block;
@@ -165,6 +164,27 @@
         .hero-desktop {
           display: none;
         }
+      }
+
+      /* ============= ANIMACIONES AL ENTRAR EN VIEWPORT ============= */
+      .fade-section {
+        opacity: 0; /* Se inician invisibles */
+        transform: translateY(30px); /* Un pequeño desplazamiento hacia abajo */
+        transition: all 0.7s ease-out;
+      }
+      .fade-section.show {
+        opacity: 1; /* Se hacen visibles */
+        transform: translateY(0); /* Vuelven a su posición original */
+      }
+
+      /* ============= MENÚ HAMBURGUESA ANIMADO EN MÓVIL ============= */
+      #mobile-menu {
+        max-height: 0; /* Por defecto cerrado */
+        overflow: hidden;
+        transition: max-height 0.5s ease;
+      }
+      #mobile-menu.open {
+        max-height: 300px; /* Ajusta este valor según tus necesidades */
       }
     </style>
   </head>
@@ -235,16 +255,27 @@
             aria-label="Open Mobile Menu"
           >
             <!-- Ícono hamburguesa -->
-            <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
-              <path d="M4 5h16M4 12h16M4 19h16" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6 h-6 w-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              />
             </svg>
           </button>
         </div>
 
-        <!-- Menú móvil (oculto por defecto) -->
+        <!-- Menú móvil (oculto por defecto, controlado con max-height) -->
         <div
           id="mobile-menu"
-          class="md:hidden bg-white border-t border-gray-200 hidden"
+          class="md:hidden bg-white border-t border-gray-200"
         >
           <nav class="flex flex-col space-y-2 p-4">
             <a
@@ -273,7 +304,7 @@
       </header>
 
       <!-- Hero Section (Imagen Desktop & Móvil) -->
-      <section class="hero w-full">
+      <section class="hero w-full fade-section">
         <!-- Versión Desktop -->
         <div
           style="min-height: 65vh"
@@ -339,8 +370,8 @@
         </div>
       </section>
 
-      <!-- About Section -->
-      <section class="py-12 bg-gray-100">
+      <!-- About Section (ID para ancla) -->
+      <section id="about" class="py-12 bg-gray-100 fade-section">
         <div class="max-w-6xl mx-auto px-4">
           <div class="text-center mb-8">
             <h2 class="text-3xl font-bold mb-4">
@@ -377,8 +408,8 @@
         </div>
       </section>
 
-      <!-- Our Cleaning Services Section -->
-      <section class="py-12">
+      <!-- Our Cleaning Services Section (ID para ancla) -->
+      <section id="services" class="py-12 fade-section">
         <div class="max-w-6xl mx-auto px-4">
           <h2 class="text-3xl font-bold text-center mb-8">
             Our Cleaning Services
@@ -483,7 +514,7 @@
       </section>
 
       <!-- Qué nos diferencia -->
-      <section class="py-12 bg-gray-100">
+      <section class="py-12 bg-gray-100 fade-section">
         <div class="max-w-6xl mx-auto px-4 text-center">
           <h2 class="text-3xl font-bold mb-4">What Sets Charis Maids Apart?</h2>
           <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -514,8 +545,8 @@
         </div>
       </section>
 
-      <!-- Sección de reserva -->
-      <section class="py-12">
+      <!-- Sección de reserva (Se usará como "Contact") -->
+      <section id="contact" class="py-12 fade-section">
         <div class="max-w-4xl mx-auto px-4 text-center">
           <h2 class="text-3xl font-bold mb-4">
             Book Your Cleaning Service Today
@@ -535,7 +566,7 @@
       </section>
 
       <!-- Sección productos no tóxicos -->
-      <section class="py-12 bg-gray-100">
+      <section class="py-12 bg-gray-100 fade-section">
         <div class="max-w-6xl mx-auto px-4 text-center">
           <h2 class="text-2xl md:text-3xl font-bold mb-4">
             We use only Non Toxic &amp; Non Allergenic Cleaning Products and
@@ -556,7 +587,7 @@
       </section>
 
       <!-- Testimonials -->
-      <section class="py-12">
+      <section class="py-12 fade-section">
         <div class="max-w-6xl mx-auto px-4">
           <h2 class="text-3xl font-bold text-center mb-8">Testimonials</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -579,7 +610,7 @@
       </section>
 
       <!-- CTA final -->
-      <section class="py-12 bg-gray-200">
+      <section class="py-12 bg-gray-200 fade-section">
         <div class="max-w-6xl mx-auto px-4 text-center">
           <h2 class="text-2xl md:text-3xl font-bold mb-4">
             Get Your Home Sparkling Clean Now!
@@ -598,7 +629,7 @@
       </section>
 
       <!-- Footer -->
-      <footer class="bg-gray-900 text-gray-300 py-8">
+      <footer class="bg-gray-900 text-gray-300 py-8 fade-section">
         <div
           class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8"
         >
@@ -662,6 +693,41 @@
           logo.classList.remove("dirty");
           logo.classList.add("sparkle");
         }, 100);
+      });
+
+      // Menú Hamburguesa (Versión Móvil) con animación slide
+      const menuToggle = document.getElementById("menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      menuToggle.addEventListener("click", () => {
+        mobileMenu.classList.toggle("open");
+      });
+
+      // Cerrar menú móvil al hacer clic en un enlace del menú
+      document.querySelectorAll("#mobile-menu a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.remove("open");
+        });
+      });
+
+      // IntersectionObserver para fade-in en secciones
+      const sections = document.querySelectorAll(".fade-section");
+      const observer = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+              obs.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.1, // Se activa cuando el 10% de la sección es visible
+        }
+      );
+
+      sections.forEach((section) => {
+        observer.observe(section);
       });
     </script>
   </body>
