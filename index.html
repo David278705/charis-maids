@@ -142,15 +142,10 @@
         text-align: center;
         color: #fff;
       }
-      /* Imagen para escritorio */
-      .hero-desktop {
-        background: url("./assets/img/bg/house.webp") no-repeat center
-          center/cover;
-      }
-      /* Imagen para móvil */
-      .hero-mobile {
-        background: url("./assets/img/bg/house.webp") no-repeat center
-          center/cover;
+
+      .bg-general {
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+          url("./assets/img/bg/house.webp") no-repeat center center / cover;
       }
 
       @media (min-width: 768px) {
@@ -242,7 +237,7 @@
 
           <!-- Botón "Get an Estimate" (sólo en desktop) -->
           <a
-            href="#contact"
+            href="sms:+16316803011"
             class="hidden md:inline-block bg-blue-600 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-700 transition"
           >
             GET AN ESTIMATE
@@ -294,7 +289,7 @@
               >Contact</a
             >
             <a
-              href="#contact"
+              href="sms:+16316803011"
               class="inline-block bg-blue-600 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-700 transition"
             >
               GET AN ESTIMATE
@@ -303,69 +298,42 @@
         </div>
       </header>
 
-      <!-- Hero Section (Imagen Desktop & Móvil) -->
-      <section class="hero w-full fade-section">
-        <!-- Versión Desktop -->
+      <!-- Hero Section (Responsive - Imagen a la izquierda en desktop) -->
+      <section
+        class="bg-general hero w-full fade-section bg-white py-16 px-4"
+        style="min-height: 65vh; border-radius: 0 0 40px 40px"
+      >
         <div
-          style="min-height: 65vh; border-radius: 0 0 40px 40px"
-          class="hero-desktop w-full hidden md:flex items-center justify-center py-20 px-4 bg-white"
+          class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-center gap-10"
         >
-          <div class="max-w-6xl mx-auto flex items-center space-x-10">
-            <!-- Tarjeta Oscura -->
-            <div
-              class="bg-gray-900 text-white p-8 rounded-2xl shadow-xl max-w-xl opacity-75"
-            >
-              <h1 class="text-5xl font-bold mb-4">Welcome to Charis Maids!</h1>
-              <p class="text-xl mb-6">
-                Trusted. Licensed. Insured. Exceptional Service.
-              </p>
-              <div class="flex flex-wrap gap-4 text-lg font-semibold">
-                <span>(631) 680-3011</span>
-                <span>(561) 710-0184</span>
-
-                <span>5 Star Service</span>
-                <span>20+ Years Experience</span>
-              </div>
-            </div>
-
-            <!-- Imagen de Persona -->
-            <div class="w-80 h-80 overflow-hidden rounded-2xl shadow-lg">
-              <img
-                src="./assets/img/bg/charis-person.jpeg"
-                alt="Charis Maids Team Member"
-                class="w-full h-full object-cover"
-              />
-            </div>
+          <!-- Imagen de Persona -->
+          <div
+            class="w-60 h-60 md:w-80 md:h-80 overflow-hidden rounded-2xl shadow-md md:shadow-lg"
+          >
+            <img
+              src="./assets/img/bg/charis-person.jpeg"
+              alt="Charis Maids Team Member"
+              class="w-full h-full object-cover"
+            />
           </div>
-        </div>
 
-        <!-- Versión Móvil -->
-        <div
-          style="min-height: 65vh"
-          class="hero-mobile w-full flex flex-col items-center justify-center py-16 px-4 bg-white md:hidden"
-        >
-          <div class="max-w-md mx-auto flex flex-col items-center space-y-6">
-            <!-- Imagen -->
-            <div class="w-60 h-60 overflow-hidden rounded-2xl shadow-md">
-              <img
-                src="./assets/img/bg/charis-person.jpeg"
-                alt="Charis Maids Team Member"
-                class="w-full h-full object-cover"
-              />
-            </div>
-
-            <!-- Tarjeta Oscura -->
+          <!-- Tarjeta Oscura -->
+          <div
+            class="text-white p-6 md:p-8 rounded-2xl shadow-xl max-w-xl text-center md:text-left"
+          >
+            <h1 class="text-3xl md:text-5xl font-bold mb-4">
+              Welcome to Charis Maids!
+            </h1>
+            <p class="text-lg md:text-xl mb-4 md:mb-6">
+              Trusted. Licensed. Insured. Exceptional Service.
+            </p>
             <div
-              class="bg-gray-900 text-white p-6 rounded-2xl shadow-md text-center w-full"
+              class="flex flex-col md:flex-wrap md:flex-row gap-2 md:gap-4 text-base md:text-lg font-semibold"
             >
-              <h1 class="text-3xl font-bold mb-4">Welcome to Charis Maids!</h1>
-              <p class="text-lg mb-4">Trusted. Licensed. Insured.</p>
-              <div class="flex flex-col space-y-2 text-base font-semibold">
-                <span>(631) 680-3011</span>
-                <span>(561) 710-0184</span>
-                <span>5 Star Service</span>
-                <span>20+ Years Experience</span>
-              </div>
+              <span>(631) 680-3011</span>
+              <span>(561) 710-0184</span>
+              <span>5 Star Service</span>
+              <span>20+ Years Experience</span>
             </div>
           </div>
         </div>
@@ -379,7 +347,7 @@
           <!-- Columna Izquierda: Imagen -->
           <div class="md:w-1/2 flex justify-center">
             <img
-              src="https://insights.workwave.com/wp-content/uploads/2020/05/happy-cleaners-stacking-hands-picture-id611175238.jpg"
+              src="./assets/img/bg/people.png"
               alt="Diana Cardona"
               class="rounded-xl w-full max-w-sm object-cover"
             />
@@ -598,7 +566,7 @@
         class="relative flex items-center bg-fixed bg-center bg-cover fade-section"
         style="
           min-height: 60vh;
-          background-image: url('https://cdn.prod.website-files.com/662a9a0b1860cf22db41bd69/662ff7377dec6027e008a4ac_Professional%20cleaning%20service%20(1).webp');
+          background-image: url('./assets/img/bg/kitchen.jpg');
         "
       >
         <!-- Overlay con opacidad al 50%, anclado al lado derecho -->
@@ -609,12 +577,14 @@
             Book Your Cleaning Service Today
           </h2>
           <a
-            href="#contact"
-            style="width: fit-content"
-            class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-md shadow-lg transition"
-          >
-            GET AN ESTIMATE
-          </a>
+          href="sms:+16316803011"
+          style="width: fit-content"
+          class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-md shadow-lg transition"
+        >
+          GET AN ESTIMATE
+        </a>
+        
+        
           <p class="mt-4 font-semibold text-white">OR Call Us: 631-680-3011</p>
         </div>
       </section>
@@ -635,7 +605,7 @@
             <!-- Imagen a la izquierda -->
             <div class="md:w-1/2 w-full">
               <img
-                src="./assets/img/bg/charis-person.jpeg"
+                src="./assets/img/bg/diana.jpeg"
                 alt="Diana Cardona"
                 class="rounded-xl w-full h-auto object-cover"
               />
@@ -673,16 +643,20 @@
 
               <!-- Firma y cita -->
               <div class="pt-4">
-                <p class="text-xl font-signature text-gray-800">
+                <!-- <p class="text-xl font-signature text-gray-800">
                   Diana Cardona
-                </p>
-                <p class="text-2xl text-sky-600 font-light leading-snug mt-1">
-                  +With God+<br />
-                  All Things<br />
-                  Are Possible<br />
-                  <span class="text-sm font-normal text-gray-500"
-                    >Matthew 19:26</span
-                  >
+                </p> -->
+                <img
+                  style="width: 200px"
+                  src="./assets/img/bg/sign.png"
+                  alt="sign"
+                />
+              </p>
+              <img
+                style="width: 200px"
+                src="./assets/img/bg/with_god.jpg"
+                alt="sign"
+              />
                 </p>
               </div>
             </div>
@@ -703,7 +677,7 @@
           </p>
           <div class="flex justify-center">
             <img
-              src="https://res.cloudinary.com/drt2tlz1j/images/f_auto,q_auto/v1690263898/fn1/eco-friendly-cleaning-products/eco-friendly-cleaning-products.png?_i=AA"
+              src="./assets/img/bg/clean.png"
               alt="Eco Friendly Cleaning"
               class="w-full md:w-1/2 rounded shadow"
             />
@@ -739,7 +713,7 @@
             <!-- Autor (foto + nombre) -->
             <div class="flex items-center space-x-3">
               <img
-                src="https://newprofilepic.photo-cdn.net//assets/images/article/profile.jpg?90af0c8"
+                src="/assets/img/bg/user.png"
                 alt="Michael Johnson"
                 class="w-10 h-10 rounded-full object-cover"
               />
@@ -758,7 +732,7 @@
             </p>
             <div class="flex items-center space-x-3">
               <img
-                src="https://newprofilepic.photo-cdn.net//assets/images/article/profile.jpg?90af0c8"
+                src="./assets/img/bg/user.png"
                 alt="Emily White"
                 class="w-10 h-10 rounded-full object-cover"
               />
@@ -775,7 +749,7 @@
             Get Your Home Sparkling Clean Now!
           </h2>
           <a
-            href="#contact"
+            href="sms:+16316803011"
             class="inline-block bg-blue-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-700 transition"
           >
             GET AN ESTIMATE
@@ -814,8 +788,8 @@
             <h3 class="text-white text-xl font-bold mb-4">Contact Us</h3>
             <p class="text-sm">
               <strong>Phone:</strong> (631) 680-3011 / (561) 710-0184 <br />
-              <strong>Email:</strong> info@charismaids.com <br />
-              <strong>Location:</strong> The Hamptons, NY
+              <strong>Email:</strong> dc@charismaids.com <br />
+              <strong>Location:</strong> The Hamptons, NY - Palm Beach, FL
             </p>
           </div>
         </div>
