@@ -2,7 +2,86 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Charis Maids - House Cleaning Service</title>
+    <title>
+      Charis Maids | Cleaning Service – Licensed, Insured & Trusted in the
+      Hamptons
+    </title>
+
+    <!-- Meta SEO Essentials -->
+    <meta
+      name="description"
+      content="Charis Maids ofrece servicios de limpieza profesionales, licenciados e asegurados en el Hamptons. ¡Obtén una limpieza profunda, organizada y eco-friendly hoy mismo!"
+    />
+    <meta
+      name="keywords"
+      content="cleaning service, limpieza, housekeeping, deep cleaning, office cleaning, Hamptons, eco friendly cleaning"
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.tudominio.com/" />
+
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="Charis Maids | Cleaning Service – Licensed, Insured & Trusted in the Hamptons"
+    />
+    <meta
+      property="og:description"
+      content="Charis Maids ofrece servicios de limpieza profesionales, licenciados e asegurados en el Hamptons. ¡Obtén una limpieza profunda, organizada y eco-friendly hoy mismo!"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.tudominio.com/" />
+    <meta
+      property="og:image"
+      content="https://www.tudominio.com/assets/img/logo.png"
+    />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Charis Maids | Cleaning Service – Licensed, Insured & Trusted in the Hamptons"
+    />
+    <meta
+      name="twitter:description"
+      content="Charis Maids ofrece servicios de limpieza profesionales, licenciados e asegurados en el Hamptons. ¡Obtén una limpieza profunda, organizada y eco-friendly hoy mismo!"
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.tudominio.com/assets/img/logo.png"
+    />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Charis Maids",
+        "image": "https://www.tudominio.com/assets/img/logo.png",
+        "telephone": "(631)680-3011",
+        "email": "dc@charismaids.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Dirección de tu negocio",
+          "addressLocality": "Hamptons",
+          "addressRegion": "NY",
+          "postalCode": "Código Postal",
+          "addressCountry": "US"
+        },
+        "url": "https://www.tudominio.com/",
+        "priceRange": "$$",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5",
+          "reviewCount": "120"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "40.9592",
+          "longitude": "-72.5579"
+        }
+      }
+    </script>
+
     <!-- Fuente Montserrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,178 +90,19 @@
       rel="stylesheet"
     />
     <link rel="icon" type="image/svg+xml" href="./assets/img/logo.png" />
+
     <!-- Tailwind CSS (CDN) -->
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <style>
-      /* Estilos globales */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      html {
-        scroll-behavior: smooth; /* desplazamiento suave al dar clic en los enlaces de navegación */
-      }
-      body {
-        font-family: "Montserrat", sans-serif;
-        overflow-x: hidden;
-      }
-
-      /* Preloader */
-      #preloader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #ffffff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 10000;
-        transition: opacity 1s ease;
-      }
-      #preloader.fade-out {
-        opacity: 0;
-      }
-      .preloader-content {
-        position: relative;
-        width: 250px;
-        height: 250px;
-      }
-      .preloader-content .logo {
-        width: 100%;
-        height: auto;
-        display: block;
-      }
-      .cleaner-animation {
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, #cccccc, #eaeaea);
-        border-radius: 20px;
-        transform: skewX(-20deg);
-        animation: sweep 2s ease-in-out forwards;
-      }
-      @keyframes sweep {
-        0% {
-          left: -100%;
-        }
-        50% {
-          left: 0%;
-        }
-        100% {
-          left: 100%;
-        }
-      }
-      .logo.sparkle {
-        position: relative;
-        animation: sparkles 1s ease-in-out 0s 1 normal forwards;
-      }
-      @keyframes sparkles {
-        0% {
-          filter: brightness(1);
-          transform: scale(1);
-        }
-        25% {
-          filter: brightness(1.5);
-        }
-        50% {
-          transform: scale(1.05);
-          filter: brightness(1.06);
-        }
-        75% {
-          filter: brightness(1);
-        }
-        100% {
-          filter: brightness(1);
-          transform: scale(1);
-        }
-      }
-      .logo.dirty {
-        filter: blur(1.5px);
-      }
-
-      /* #main-content por defecto (oculto y opaco) */
-      #main-content {
-        display: none;
-        opacity: 0;
-        transition: opacity 0.8s ease; /* Duración y efecto del fade */
-      }
-      /* Clase que usaremos para mostrarlo con fade */
-      #main-content.fade-in {
-        display: block;
-        opacity: 1; /* Hace que aparezca gradualmente */
-      }
-
-      /* Encabezado "Licenciado y Asegurado" */
-      .topbar {
-        background-color: #0052cc;
-        color: #fff;
-        text-align: center;
-        padding: 0.5rem;
-        font-size: 0.9rem;
-      }
-
-      /* Hero Section con imágenes distintas en desktop y mobile */
-      .hero {
-        position: relative;
-        width: 100%;
-        min-height: 65vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        color: #fff;
-      }
-
-      .bg-general {
-        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-          url("./assets/img/bg/house.webp") no-repeat center center / cover;
-      }
-
-      @media (min-width: 768px) {
-        /* En desktop, mostramos la versión desktop y ocultamos la mobile */
-        .hero-mobile {
-          display: none;
-        }
-      }
-      @media (max-width: 767px) {
-        /* En mobile, mostramos la versión mobile y ocultamos la desktop */
-        .hero-desktop {
-          display: none;
-        }
-      }
-
-      /* ============= ANIMACIONES AL ENTRAR EN VIEWPORT ============= */
-      .fade-section {
-        opacity: 0; /* Se inician invisibles */
-        transform: translateY(30px); /* Un pequeño desplazamiento hacia abajo */
-        transition: all 0.7s ease-out;
-      }
-      .fade-section.show {
-        opacity: 1; /* Se hacen visibles */
-        transform: translateY(0); /* Vuelven a su posición original */
-      }
-
-      /* ============= MENÚ HAMBURGUESA ANIMADO EN MÓVIL ============= */
-      #mobile-menu {
-        max-height: 0; /* Por defecto cerrado */
-        overflow: hidden;
-        transition: max-height 0.5s ease;
-      }
-      #mobile-menu.open {
-        max-height: 300px; /* Ajusta este valor según tus necesidades */
-      }
-    </style>
+    <!-- Hoja de estilos personalizada -->
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
+
   <body>
     <!-- Preloader -->
     <div id="preloader">
@@ -197,7 +117,7 @@
 
     <!-- Contenido principal -->
     <div id="main-content">
-      <!-- Barra superior (opcional) -->
+      <!-- Topbar -->
       <div class="topbar">
         We are Licensed and Insured! Call us for a Free Estimate.
       </div>
@@ -216,7 +136,7 @@
             <span class="text-xl font-bold text-gray-800">Charis Maids</span>
           </a>
 
-          <!-- Navegación (versión desktop) -->
+          <!-- Navegación (desktop) -->
           <nav class="hidden md:flex space-x-6">
             <a
               href="#services"
@@ -235,7 +155,7 @@
             >
           </nav>
 
-          <!-- Botón "Get an Estimate" (sólo en desktop) -->
+          <!-- Botón "Get an Estimate" (desktop) -->
           <a
             href="sms:+16316803011"
             class="hidden md:inline-block bg-blue-600 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-700 transition"
@@ -243,20 +163,19 @@
             GET AN ESTIMATE
           </a>
 
-          <!-- Botón hamburguesa (sólo en mobile) -->
+          <!-- Botón hamburguesa (móvil) -->
           <button
             id="menu-toggle"
             class="md:hidden text-gray-600 focus:outline-none"
             aria-label="Open Mobile Menu"
           >
-            <!-- Ícono hamburguesa -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="size-6 h-6 w-6"
+              class="h-6 w-6"
             >
               <path
                 stroke-linecap="round"
@@ -267,7 +186,7 @@
           </button>
         </div>
 
-        <!-- Menú móvil (oculto por defecto, controlado con max-height) -->
+        <!-- Menú móvil -->
         <div
           id="mobile-menu"
           class="md:hidden bg-white border-t border-gray-200"
@@ -298,78 +217,78 @@
         </div>
       </header>
 
-<!-- Hero Section (Responsive - Mobile sin imagen) -->
-<section
-  class="bg-general w-full py-12 px-6 rounded-b-[40px] fade-section"
->
-  <div class="max-w-md mx-auto text-center md:hidden animate-fade-in">
-    <h1 class="text-3xl text-white font-bold  mb-4 leading-tight">
-      Welcome to <span class="text-primary">Charis Maids!</span>
-    </h1>
-    <p class="text-lg mb-6 text-white">
-      Trusted. Licensed. Insured. <br />
-      Exceptional Service.
-    </p>
-    <div class="space-y-3  font-semibold text-base">
-      <div class="bg-gray-100 p-3 rounded-lg shadow-sm">
-        📞 (631) 680-3011
-      </div>
-      <div class="bg-gray-100 p-3 rounded-lg shadow-sm">
-        📞 (561) 710-0184
-      </div>
-      <div class="bg-gray-100 p-3 rounded-lg shadow-sm">
-        ⭐️ 5 Star Service
-      </div>
-      <div class="bg-gray-100 p-3 rounded-lg shadow-sm">
-        🏆 20+ Years Experience
-      </div>
-    </div>
-  </div>
-
-  <!-- Desktop original -->
-  <div
-    class="hidden md:flex max-w-6xl mx-auto flex-col md:flex-row items-center justify-center gap-10"
-  >
-    <!-- Imagen de Persona -->
-    <div
-      class="w-60 h-60 md:w-80 md:h-80 overflow-hidden rounded-2xl shadow-md md:shadow-lg"
-    >
-      <img
-        src="./assets/img/bg/charis-person.jpeg"
-        alt="Charis Maids Team Member"
-        class="w-full h-full object-cover"
-      />
-    </div>
-
-    <!-- Tarjeta Oscura -->
-    <div
-      class="text-white p-6 md:p-8 rounded-2xl max-w-xl text-center md:text-left"
-    >
-      <h1 class="text-3xl md:text-5xl font-bold mb-4">
-        Welcome to Charis Maids!
-      </h1>
-      <p class="text-lg md:text-xl mb-4 md:mb-6">
-        Trusted. Licensed. Insured. Exceptional Service.
-      </p>
-      <div
-        class="flex flex-col md:flex-wrap md:flex-row gap-2 md:gap-4 text-base md:text-lg font-semibold"
+      <!-- Hero Section -->
+      <section
+        class="bg-general w-full py-12 px-6 rounded-b-[40px] fade-section"
       >
-        <span>(631) 680-3011</span>
-        <span>(561) 710-0184</span>
-        <span>5 Star Service</span>
-        <span>20+ Years Experience</span>
-      </div>
-    </div>
-  </div>
-</section>
+        <!-- Versión móvil -->
+        <div class="max-w-md mx-auto text-center md:hidden">
+          <h1 class="text-3xl text-white font-bold mb-4 leading-tight">
+            Welcome to <span class="text-primary">Charis Maids!</span>
+          </h1>
+          <p class="text-lg mb-6 text-white">
+            Trusted. Licensed. Insured. <br />
+            Exceptional Service.
+          </p>
+          <div class="space-y-3 font-semibold text-base">
+            <div class="bg-gray-100 p-3 rounded-lg shadow-sm">
+              📞 (631) 680-3011
+            </div>
+            <div class="bg-gray-100 p-3 rounded-lg shadow-sm">
+              📞 (561) 710-0184
+            </div>
+            <div class="bg-gray-100 p-3 rounded-lg shadow-sm">
+              ⭐️ 5 Star Service
+            </div>
+            <div class="bg-gray-100 p-3 rounded-lg shadow-sm">
+              🏆 20+ Years Experience
+            </div>
+          </div>
+        </div>
 
+        <!-- Versión desktop -->
+        <div
+          class="hidden md:flex max-w-6xl mx-auto flex-col md:flex-row items-center justify-center gap-10"
+        >
+          <!-- Imagen de Persona -->
+          <div
+            class="w-60 h-60 md:w-80 md:h-80 overflow-hidden rounded-2xl shadow-md md:shadow-lg"
+          >
+            <img
+              src="./assets/img/bg/charis-person.jpeg"
+              alt="Charis Maids Team Member"
+              class="w-full h-full object-cover"
+            />
+          </div>
 
-      <!-- About Charis Maids - The Best Cleaning Service in the Hamptons -->
+          <!-- Tarjeta de Información -->
+          <div
+            class="text-white p-6 md:p-8 rounded-2xl max-w-xl text-center md:text-left"
+          >
+            <h1 class="text-3xl md:text-5xl font-bold mb-4">
+              Welcome to Charis Maids!
+            </h1>
+            <p class="text-lg md:text-xl mb-4 md:mb-6">
+              Trusted. Licensed. Insured. Exceptional Service.
+            </p>
+            <div
+              class="flex flex-col md:flex-wrap md:flex-row gap-2 md:gap-4 text-base md:text-lg font-semibold"
+            >
+              <span>(631) 680-3011</span>
+              <span>(561) 710-0184</span>
+              <span>5 Star Service</span>
+              <span>20+ Years Experience</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Charis Maids -->
       <section class="bg-white py-16 px-4">
         <div
           class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8"
         >
-          <!-- Columna Izquierda: Imagen -->
+          <!-- Imagen -->
           <div class="md:w-1/2 flex justify-center">
             <img
               src="./assets/img/bg/people.png"
@@ -377,55 +296,48 @@
               class="rounded-xl w-full max-w-sm object-cover"
             />
           </div>
-          <!-- Columna Derecha: Texto -->
+          <!-- Texto -->
           <div class="md:w-1/2">
-            <!-- Subtítulo pequeño en mayúsculas -->
             <h3
               class="text-xs font-bold tracking-wider text-gray-500 uppercase mb-2"
             >
               AUTHENTIC CLEANING SERVICES
             </h3>
-
-            <!-- Título principal -->
             <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
               About Charis Maids
             </h2>
-
-            <!-- Párrafos -->
             <p class="text-gray-700 mb-3">
               Charis Maids is dedicated to providing top-notch cleaning services
               tailored to meet your unique needs. Established with a focus on
               excellence, we proudly serve satisfied clients throughout the
               Hamptons. Whether you need weekly, bi-weekly, or monthly cleaning
               services, we offer flexible scheduling to ensure your home or
-              office stays spotless, organized, and refreshed.
+              office stays spotless, organized, and refreshed.
             </p>
           </div>
         </div>
       </section>
 
-      <!-- Our Cleaning Services (Diseño Actualizado) -->
+      <!-- Our Cleaning Services -->
       <section
         style="background-color: #f0f8ff"
         class="py-16 px-4"
         id="services"
       >
         <div class="max-w-6xl mx-auto text-center">
-          <!-- Subtítulo pequeño arriba -->
           <p
             class="text-sm font-bold tracking-wider text-gray-500 uppercase mb-2"
           >
             QUALITY CLEANING SERVICES
           </p>
-          <!-- Título principal -->
           <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
             Our Cleaning Services
           </h2>
         </div>
 
-        <!-- Fila 1 de servicios -->
+        <!-- Fila 1 -->
         <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- Housekeeping -->
+          <!-- Housekeeping Services -->
           <div>
             <img
               src="./assets/images/housekeeping.jpg"
@@ -445,11 +357,11 @@
               your primary residence, vacation home, or rental property. Our
               trusted team provides consistent, discreet, and meticulous care,
               ensuring your home is always immaculate, welcoming, and
-              effortlessly maintained.
+              effortlessly maintained.
             </ul>
           </div>
 
-          <!-- Post Construction -->
+          <!-- Post Construction Cleaning -->
           <div>
             <img
               src="./assets/images/post-construction.jpg"
@@ -468,7 +380,7 @@
               designed to transform newly built or renovated spaces into
               pristine, move-in ready homes. We handle every detail with
               precision—from fine dust removal to deep cleaning of every
-              surface—ensuring your property looks flawless and polished.
+              surface—ensuring your property looks flawless and polished.
             </ul>
           </div>
 
@@ -490,15 +402,14 @@
               others overlook—baseboards, high-touch areas, under furniture, and
               more.
               <br />
-
               Serving homes across the Hamptons, NY, our experienced team
               ensures a meticulous clean that leaves your space feeling renewed,
-              sanitized, and truly spotless.
+              sanitized, and truly spotless.
             </ul>
           </div>
         </div>
 
-        <!-- Fila 2 de servicios -->
+        <!-- Fila 2 -->
         <div
           class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mt-10"
         >
@@ -520,7 +431,7 @@
               office cleaning services in the Hamptons. We offer flexible
               scheduling, including evening and after-hours cleanings, for both
               commercial and home offices—ensuring a clean, organized, and
-              healthy environment tailored to your needs
+              healthy environment tailored to your needs.
             </ul>
           </div>
 
@@ -540,31 +451,25 @@
             >
               Bring order and peace to your space with our personalized home
               organizing services. From closets to kitchens, we create stylish,
-              functional systems that fit your lifestyle and elevate
-              your Hamptons home.
+              functional systems that fit your lifestyle and elevate your
+              Hamptons home.
             </ul>
           </div>
         </div>
       </section>
 
-      <!-- What Sets Charis Maids Apart? -->
+      <!-- What Sets Charis Maids Apart -->
       <section class="py-24 bg-white fade-section">
         <div class="max-w-6xl mx-auto px-4 text-center">
-          <!-- Subtítulo pequeño arriba -->
           <p
             class="text-xs font-semibold text-gray-500 tracking-widest uppercase mb-2"
           >
             AUTHENTICITY GUARANTEED
           </p>
-
-          <!-- Título principal -->
           <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
             What Sets Charis Maids Apart?
           </h2>
-
-          <!-- Contenedor de los 3 bloques -->
           <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Bloque 01 -->
             <div>
               <span class="text-blue-600 text-2xl font-extrabold">01.</span>
               <h3 class="text-xl font-bold text-gray-800 mt-1">
@@ -575,8 +480,6 @@
                 service.
               </p>
             </div>
-
-            <!-- Bloque 02 -->
             <div>
               <span class="text-blue-600 text-2xl font-extrabold">02.</span>
               <h3 class="text-xl font-bold text-gray-800 mt-1">
@@ -587,8 +490,6 @@
                 requirements and schedule.
               </p>
             </div>
-
-            <!-- Bloque 03 -->
             <div>
               <span class="text-blue-600 text-2xl font-extrabold">03.</span>
               <h3 class="text-xl font-bold text-gray-800 mt-1">
@@ -603,15 +504,14 @@
         </div>
       </section>
 
-      <!-- Sección Parallax con overlay a la derecha -->
+      <!-- Sección Parallax -->
       <section
-        class="relative flex items-center bg-fixed bg-center bg-cover fade-section"
+        class="relative flex items-center bg-fixed bg-center bg-cover"
         style="
           min-height: 60vh;
           background-image: url('./assets/images/deep-cleaning.jpg');
         "
       >
-        <!-- Overlay con opacidad al 50%, anclado al lado derecho -->
         <div
           class="absolute top-0 right-0 w-full md:w-[40%] h-full bg-black bg-opacity-50 flex flex-col justify-center px-6 md:px-10"
         >
@@ -619,30 +519,26 @@
             Book Your Cleaning Service Today
           </h2>
           <a
-          href="sms:+16316803011"
-          style="width: fit-content"
-          class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-md shadow-lg transition"
-        >
-          GET AN ESTIMATE
-        </a>
-        
-        
+            href="sms:+16316803011"
+            style="width: fit-content"
+            class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-md shadow-lg transition"
+          >
+            GET AN ESTIMATE
+          </a>
           <p class="mt-4 font-semibold text-white">OR Call Us: 631-680-3011</p>
         </div>
       </section>
 
+      <!-- My Story -->
       <section id="about-me" class="bg-white py-20 px-4">
         <div class="max-w-6xl mx-auto">
-          <!-- Título principal -->
           <div class="text-center mb-12">
             <h2 class="text-4xl font-bold text-gray-900">My Story</h2>
           </div>
-
-          <!-- Contenido principal -->
           <div
             class="flex flex-col md:flex-row items-start md:items-center gap-10"
           >
-            <!-- Imagen a la izquierda -->
+            <!-- Imagen -->
             <div class="md:w-1/2 w-full">
               <img
                 src="./assets/img/bg/diana.jpeg"
@@ -650,8 +546,7 @@
                 class="rounded-xl w-full h-auto object-cover"
               />
             </div>
-
-            <!-- Texto a la derecha -->
+            <!-- Texto -->
             <div class="md:w-1/2 w-full text-gray-800 space-y-4">
               <h3
                 class="uppercase text-sm font-semibold tracking-wider text-gray-500"
@@ -680,31 +575,24 @@
                 a legacy that highlights perseverance and excellence through my
                 entrepreneurial spirit!
               </p>
-
-              <!-- Firma y cita -->
               <div class="pt-4">
-                <!-- <p class="text-xl font-signature text-gray-800">
-                  Diana Cardona
-                </p> -->
                 <img
                   style="width: 200px"
                   src="./assets/img/bg/sign.png"
                   alt="sign"
                 />
-              </p>
-              <img
-                style="width: 200px"
-                src="./assets/img/bg/with_god.jpg"
-                alt="sign"
-              />
-                </p>
+                <img
+                  style="width: 200px"
+                  src="./assets/img/bg/with_god.jpg"
+                  alt="sign"
+                />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Sección productos no tóxicos -->
+      <!-- Non Toxic Products -->
       <section class="py-12 bg-gray-100 fade-section">
         <div class="max-w-6xl mx-auto px-4 text-center">
           <h2 class="text-2xl md:text-3xl font-bold mb-4">
@@ -725,32 +613,26 @@
         </div>
       </section>
 
-      <!-- Testimonials Section -->
+      <!-- Testimonials -->
       <section class="bg-[#F0F8FF] py-16 px-4">
         <div class="max-w-6xl mx-auto text-center mb-8">
-          <!-- Subtítulo pequeño -->
           <p class="text-sm font-bold uppercase tracking-widest text-gray-500">
             HAPPY CLIENTS SAY
           </p>
-          <!-- Título -->
           <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2">
             Testimonials
           </h2>
         </div>
-
         <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           <!-- Testimonio 1 -->
           <div class="flex flex-col items-start space-y-4">
-            <!-- Estrellas -->
             <div class="text-yellow-500 text-xl">
               &#9733;&#9733;&#9733;&#9733;&#9733;
             </div>
-            <!-- Texto principal -->
             <p class="text-gray-700 leading-relaxed">
               "Charis Maids exceeded my expectations! Their attention to detail
               is unmatched."
             </p>
-            <!-- Autor (foto + nombre) -->
             <div class="flex items-center space-x-3">
               <img
                 src="/assets/img/bg/user.png"
@@ -782,7 +664,7 @@
         </div>
       </section>
 
-      <!-- CTA final -->
+      <!-- CTA Final -->
       <section class="py-24 bg-gray-200 fade-section">
         <div class="max-w-6xl mx-auto px-4 text-center">
           <h2 class="text-2xl md:text-3xl font-bold mb-4">
@@ -839,69 +721,7 @@
       </footer>
     </div>
 
-    <script>
-      // Preloader
-      document.addEventListener("DOMContentLoaded", function () {
-        setTimeout(function () {
-          const preloader = document.getElementById("preloader");
-          preloader.classList.add("fade-out");
-          setTimeout(function () {
-            preloader.style.display = "none";
-
-            // 1) Mostramos el main-content
-            const mainContent = document.getElementById("main-content");
-            mainContent.style.display = "block";
-
-            // 2) Obligamos al navegador a “recalcular” estilos
-            // antes de añadir la clase que sube la opacidad a 1
-            setTimeout(function () {
-              mainContent.classList.add("fade-in");
-            }, 50);
-          }, 500);
-        }, 1000);
-
-        // Quitar efecto sucio y agregar brillo al logo
-        setTimeout(function () {
-          const logo = document.querySelector(".logo");
-          logo.classList.remove("dirty");
-          logo.classList.add("sparkle");
-        }, 100);
-      });
-
-      // Menú Hamburguesa (Versión Móvil) con animación slide
-      const menuToggle = document.getElementById("menu-toggle");
-      const mobileMenu = document.getElementById("mobile-menu");
-
-      menuToggle.addEventListener("click", () => {
-        mobileMenu.classList.toggle("open");
-      });
-
-      // Cerrar menú móvil al hacer clic en un enlace del menú
-      document.querySelectorAll("#mobile-menu a").forEach((link) => {
-        link.addEventListener("click", () => {
-          mobileMenu.classList.remove("open");
-        });
-      });
-
-      // IntersectionObserver para fade-in en secciones
-      const sections = document.querySelectorAll(".fade-section");
-      const observer = new IntersectionObserver(
-        (entries, obs) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("show");
-              obs.unobserve(entry.target);
-            }
-          });
-        },
-        {
-          threshold: 0.1, // Se activa cuando el 10% de la sección es visible
-        }
-      );
-
-      sections.forEach((section) => {
-        observer.observe(section);
-      });
-    </script>
+    <!-- Archivo de JavaScript personalizado -->
+    <script src="js/script.js"></script>
   </body>
 </html>
