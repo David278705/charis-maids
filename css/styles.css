@@ -1,0 +1,129 @@
+/* ------------------------------
+   Global Styles
+------------------------------ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+  overflow-x: hidden;
+}
+
+/* ------------------------------
+   Preloader
+------------------------------ */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  transition: opacity 1s ease;
+}
+#preloader.fade-out {
+  opacity: 0;
+}
+.preloader-content {
+  position: relative;
+  width: 250px;
+  height: 250px;
+}
+.preloader-content .logo {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.logo.dirty {
+  filter: blur(1.5px);
+}
+.logo.sparkle {
+  position: relative;
+  animation: sparkles 1s ease-in-out 0s 1 normal forwards;
+}
+@keyframes sparkles {
+  0% {
+    filter: brightness(1);
+    transform: scale(1);
+  }
+  25% {
+    filter: brightness(1.5);
+  }
+  50% {
+    transform: scale(1.05);
+    filter: brightness(1.06);
+  }
+  75% {
+    filter: brightness(1);
+  }
+  100% {
+    filter: brightness(1);
+    transform: scale(1);
+  }
+}
+
+/* ------------------------------
+   Main Content
+------------------------------ */
+#main-content {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+#main-content.fade-in {
+  display: block;
+  opacity: 1;
+}
+
+/* ------------------------------
+   Topbar
+------------------------------ */
+.topbar {
+  background-color: #0052cc;
+  color: #fff;
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* ------------------------------
+   Background for Hero Section
+------------------------------ */
+.bg-general {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("../assets/img/bg/house.webp") no-repeat center center / cover;
+}
+
+/* ------------------------------
+   Scroll Animations
+------------------------------ */
+.fade-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.7s ease-out;
+}
+.fade-section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ------------------------------
+   Mobile Menu
+------------------------------ */
+#mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+#mobile-menu.open {
+  max-height: 300px;
+}
