@@ -57,4 +57,4 @@ setTimeout(() => {
   sections.forEach((section) => {
     observer.observe(section);
   });
-}, 2000);
+}, 4000);
