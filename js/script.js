@@ -24,35 +24,37 @@ document.addEventListener("DOMContentLoaded", function () {
   }, 100);
 });
 
-// Menú hamburguesa (móvil)
-const menuToggle = document.getElementById("menu-toggle");
-const mobileMenu = document.getElementById("mobile-menu");
+setTimeout(() => {
+  // Menú hamburguesa (móvil)
+  const menuToggle = document.getElementById("menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
 
-menuToggle.addEventListener("click", () => {
-  mobileMenu.classList.toggle("open");
-});
-
-// Cerrar menú móvil al seleccionar un enlace
-document.querySelectorAll("#mobile-menu a").forEach((link) => {
-  link.addEventListener("click", () => {
-    mobileMenu.classList.remove("open");
+  menuToggle.addEventListener("click", () => {
+    mobileMenu.classList.toggle("open");
   });
-});
 
-// IntersectionObserver para animación en scroll
-const sections = document.querySelectorAll(".fade-section");
-const observer = new IntersectionObserver(
-  (entries, obs) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("show");
-        obs.unobserve(entry.target);
-      }
+  // Cerrar menú móvil al seleccionar un enlace
+  document.querySelectorAll("#mobile-menu a").forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
     });
-  },
-  { threshold: 0.1 }
-);
+  });
 
-sections.forEach((section) => {
-  observer.observe(section);
-});
+  // IntersectionObserver para animación en scroll
+  const sections = document.querySelectorAll(".fade-section");
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  sections.forEach((section) => {
+    observer.observe(section);
+  });
+}, 2000);

@@ -97,10 +97,20 @@
       rel="stylesheet"
     />
 
+    <script defer src="https://unpkg.com/swup@4"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swup@4/dist/swup.min.css" />
+
+    <script defer src="/js/swup-init.js"></script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Hoja de estilos personalizada -->
     <link rel="stylesheet" href="css/styles.css" />
+
+    <script defer src="/js/includes.js"></script>
+    <!-- nuevo -->
+    <script defer src="/js/script.js"></script>
+    <!-- tu script -->
   </head>
 
   <body>
@@ -117,611 +127,487 @@
 
     <!-- Contenido principal -->
     <div id="main-content">
-      <!-- Topbar -->
-      <div class="topbar">
-        We are Licensed and Insured! Call us for a Free Estimate.
-      </div>
+      <!-- ⬇ aquí se inyectará el header -->
+      <div id="site-header"></div>
 
-      <header class="bg-white sticky top-0 z-50 shadow-md">
-        <div
-          class="max-w-6xl mx-auto px-4 flex items-center justify-between h-16"
-        >
-          <!-- Logo y nombre -->
-          <a href="#" class="flex items-center space-x-2">
-            <img
-              src="./assets/img/logo.png"
-              alt="Charis Maids Logo"
-              class="h-10 w-10 object-cover"
-            />
-            <span class="text-xl font-bold text-gray-800">Charis Maids</span>
-          </a>
-
-          <!-- Navegación (desktop) -->
-          <nav class="hidden md:flex space-x-6">
-            <a
-              href="#services"
-              class="text-gray-600 hover:text-blue-600 transition"
-              >Services</a
-            >
-            <a
-              href="#about"
-              class="text-gray-600 hover:text-blue-600 transition"
-              >About</a
-            >
-            <a
-              href="#contact"
-              class="text-gray-600 hover:text-blue-600 transition"
-              >Contact</a
-            >
-          </nav>
-
-          <!-- Botón "Get an Estimate" (desktop) -->
-          <a
-            href="sms:+16316803011"
-            class="hidden md:inline-block bg-blue-600 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-700 transition"
-          >
-            GET AN ESTIMATE
-          </a>
-
-          <!-- Botón hamburguesa (móvil) -->
-          <button
-            id="menu-toggle"
-            class="md:hidden text-gray-600 focus:outline-none"
-            aria-label="Open Mobile Menu"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="h-6 w-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-              />
-            </svg>
-          </button>
-        </div>
-
-        <!-- Menú móvil -->
-        <div
-          id="mobile-menu"
-          class="md:hidden bg-white border-t border-gray-200"
-        >
-          <nav class="flex flex-col space-y-2 p-4">
-            <a
-              href="#services"
-              class="text-gray-600 hover:text-blue-600 transition"
-              >Services</a
-            >
-            <a
-              href="#about"
-              class="text-gray-600 hover:text-blue-600 transition"
-              >About</a
-            >
-            <a
-              href="#contact"
-              class="text-gray-600 hover:text-blue-600 transition"
-              >Contact</a
-            >
-            <a
-              href="sms:+16316803011"
-              class="inline-block bg-blue-600 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-700 transition"
-            >
-              GET AN ESTIMATE
-            </a>
-          </nav>
-        </div>
-      </header>
-
-      <!-- Hero Section -->
-      <section
-        class="bg-general w-full py-12 px-6 rounded-b-[40px] fade-section"
-      >
-        <!-- Versión móvil -->
-        <div class="max-w-md mx-auto text-center md:hidden">
-          <h1 class="text-3xl text-white font-bold mb-4 leading-tight">
-            Welcome to <span class="text-primary">Charis Maids!</span>
-          </h1>
-          <p class="text-lg mb-6 text-white">
-            Trusted. Licensed. Insured. <br />
-            Exceptional Service.
-          </p>
-          <div class="space-y-3 font-semibold text-base">
-            <div class="bg-gray-100 p-3 rounded-lg shadow-sm">
-              📞 (631) 680-3011
-            </div>
-            <div class="bg-gray-100 p-3 rounded-lg shadow-sm">
-              📞 (561) 710-0184
-            </div>
-            <div class="bg-gray-100 p-3 rounded-lg shadow-sm">
-              ⭐️ 5 Star Service
-            </div>
-            <div class="bg-gray-100 p-3 rounded-lg shadow-sm">
-              🏆 20+ Years Experience
-            </div>
-          </div>
-        </div>
-
-        <!-- Versión desktop -->
-        <div
-          class="hidden md:flex max-w-6xl mx-auto flex-col md:flex-row items-center justify-center gap-10"
-        >
-          <!-- Imagen de Persona -->
-          <div
-            class="w-60 h-60 md:w-80 md:h-80 overflow-hidden rounded-2xl shadow-md md:shadow-lg"
-          >
-            <img
-              src="./assets/img/bg/charis-person.jpeg"
-              alt="Charis Maids Team Member"
-              class="w-full h-full object-cover"
-            />
-          </div>
-
-          <!-- Tarjeta de Información -->
-          <div
-            class="text-white p-6 md:p-8 rounded-2xl max-w-xl text-center md:text-left"
-          >
-            <h1 class="text-3xl md:text-5xl font-bold mb-4">
-              Welcome to Charis Maids!
+      <!-- CONTENIDO ESPECÍFICO de cada página -->
+      <main id="swup" class="transition-fade">
+        <!-- Hero Section -->
+        <section class="bg-general w-full py-12 px-6 rounded-b-[40px]">
+          <!-- Versión móvil -->
+          <div class="max-w-md mx-auto text-center md:hidden">
+            <h1 class="text-3xl text-white font-bold mb-4 leading-tight">
+              Welcome to <span class="text-primary">Charis Maids!</span>
             </h1>
-            <p class="text-lg md:text-xl mb-4 md:mb-6">
-              Trusted. Licensed. Insured. Exceptional Service.
+            <p class="text-lg mb-6 text-white">
+              Trusted. Licensed. Insured. <br />
+              Exceptional Service.
             </p>
-            <div
-              class="flex flex-col md:flex-wrap md:flex-row gap-2 md:gap-4 text-base md:text-lg font-semibold"
-            >
-              <span>(631) 680-3011</span>
-              <span>(561) 710-0184</span>
-              <span>5 Star Service</span>
-              <span>20+ Years Experience</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- About Charis Maids -->
-      <section class="bg-white py-16 px-4">
-        <div
-          class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8"
-        >
-          <!-- Imagen -->
-          <div class="md:w-1/2 flex justify-center">
-            <img
-              src="./assets/img/bg/people-small.png"
-              alt="Diana Cardona"
-              class="rounded-xl w-full max-w-sm object-cover"
-            />
-          </div>
-          <!-- Texto -->
-          <div class="md:w-1/2">
-            <h3
-              class="text-xs font-bold tracking-wider text-gray-500 uppercase mb-2"
-            >
-              AUTHENTIC CLEANING SERVICES
-            </h3>
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-              About Charis Maids
-            </h2>
-            <p class="text-gray-700 mb-3">
-              Charis Maids is dedicated to providing top-notch cleaning services
-              tailored to meet your unique needs. Established with a focus on
-              excellence, we proudly serve satisfied clients throughout the
-              Hamptons. Whether you need weekly, bi-weekly, or monthly cleaning
-              services, we offer flexible scheduling to ensure your home or
-              office stays spotless, organized, and refreshed.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Our Cleaning Services -->
-      <section
-        style="background-color: #f0f8ff"
-        class="py-16 px-4"
-        id="services"
-      >
-        <div class="max-w-6xl mx-auto text-center">
-          <p
-            class="text-sm font-bold tracking-wider text-gray-500 uppercase mb-2"
-          >
-            QUALITY CLEANING SERVICES
-          </p>
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
-            Our Cleaning Services
-          </h2>
-        </div>
-
-        <!-- Fila 1 -->
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- Housekeeping Services -->
-          <div>
-            <img
-              src="./assets/images/housekeeping.webp"
-              alt="Housekeeping Services"
-              class="w-full h-auto object-cover rounded-xl mb-4"
-            />
-            <h3 class="text-xl font-bold text-gray-800 mb-2">
-              Housekeeping Services
-            </h3>
-            <ul
-              style="font-size: 11px"
-              class="list-disc list-inside text-gray-600 leading-relaxed"
-            >
-              Elevate your home experience with our premium housekeeping
-              services in the Hamptons, NY. We specialize in high-end,
-              detail-oriented cleaning tailored to your lifestyle—whether it’s
-              your primary residence, vacation home, or rental property. Our
-              trusted team provides consistent, discreet, and meticulous care,
-              ensuring your home is always immaculate, welcoming, and
-              effortlessly maintained.
-            </ul>
-          </div>
-
-          <!-- Post Construction Cleaning -->
-          <div>
-            <img
-              src="./assets/images/post-construction.webp"
-              alt="Post Construction Cleaning"
-              class="w-full h-auto object-cover rounded-xl mb-4"
-            />
-            <h3 class="text-xl font-bold text-gray-800 mb-2">
-              Post Construction Cleaning
-            </h3>
-            <ul
-              style="font-size: 11px"
-              class="list-disc list-inside text-gray-600 leading-relaxed"
-            >
-              After the dust settles, let us bring the shine. Our
-              post-construction cleaning services in the Hamptons, NY, are
-              designed to transform newly built or renovated spaces into
-              pristine, move-in ready homes. We handle every detail with
-              precision—from fine dust removal to deep cleaning of every
-              surface—ensuring your property looks flawless and polished.
-            </ul>
-          </div>
-
-          <!-- Deep Cleaning -->
-          <div>
-            <img
-              src="./assets/images/deep-cleaning2.webp"
-              alt="Deep Cleaning"
-              class="w-full h-auto object-cover rounded-xl mb-4"
-            />
-            <h3 class="text-xl font-bold text-gray-800 mb-2">Deep Cleaning</h3>
-            <ul
-              style="font-size: 11px"
-              class="list-disc list-inside text-gray-600 leading-relaxed"
-            >
-              Our deep cleaning service goes beyond the surface to refresh and
-              restore every corner of your home. Perfect for seasonal openings,
-              special occasions, or a thorough reset, we focus on the details
-              others overlook—baseboards, high-touch areas, under furniture, and
-              more.
-              <br />
-              Serving homes across the Hamptons, NY, our experienced team
-              ensures a meticulous clean that leaves your space feeling renewed,
-              sanitized, and truly spotless.
-            </ul>
-          </div>
-        </div>
-
-        <!-- Fila 2 -->
-        <div
-          class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mt-10"
-        >
-          <!-- Office Cleaning -->
-          <div>
-            <img
-              src="./assets/images/office-cleaning.webp"
-              alt="Office Cleaning"
-              class="w-full h-auto object-cover rounded-xl mb-4"
-            />
-            <h3 class="text-xl font-bold text-gray-800 mb-2">
-              Office Cleaning
-            </h3>
-            <ul
-              style="font-size: 11px"
-              class="list-disc list-inside text-gray-600 leading-relaxed"
-            >
-              Keep your workspace pristine and professional with our reliable
-              office cleaning services in the Hamptons. We offer flexible
-              scheduling, including evening and after-hours cleanings, for both
-              commercial and home offices—ensuring a clean, organized, and
-              healthy environment tailored to your needs.
-            </ul>
-          </div>
-
-          <!-- Home Organizing -->
-          <div>
-            <img
-              src="./assets/images/home-organizing.webp"
-              alt="Home Organizing"
-              class="w-full h-auto object-cover rounded-xl mb-4"
-            />
-            <h3 class="text-xl font-bold text-gray-800 mb-2">
-              Home Organizing
-            </h3>
-            <ul
-              style="font-size: 11px"
-              class="list-disc list-inside text-gray-600 leading-relaxed"
-            >
-              Bring order and peace to your space with our personalized home
-              organizing services. From closets to kitchens, we create stylish,
-              functional systems that fit your lifestyle and elevate your
-              Hamptons home.
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- What Sets Charis Maids Apart -->
-      <section class="py-24 bg-white fade-section">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-          <p
-            class="text-xs font-semibold text-gray-500 tracking-widest uppercase mb-2"
-          >
-            AUTHENTICITY GUARANTEED
-          </p>
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
-            What Sets Charis Maids Apart?
-          </h2>
-          <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <span class="text-blue-600 text-2xl font-extrabold">01.</span>
-              <h3 class="text-xl font-bold text-gray-800 mt-1">
-                Professional Crew
-              </h3>
-              <p class="text-gray-600 mt-2">
-                Highly trained and experienced cleaners dedicated to exceptional
-                service.
-              </p>
-            </div>
-            <div>
-              <span class="text-blue-600 text-2xl font-extrabold">02.</span>
-              <h3 class="text-xl font-bold text-gray-800 mt-1">
-                Tailored Cleaning
-              </h3>
-              <p class="text-gray-600 mt-2">
-                Customized cleaning solutions that fit your specific
-                requirements and schedule.
-              </p>
-            </div>
-            <div>
-              <span class="text-blue-600 text-2xl font-extrabold">03.</span>
-              <h3 class="text-xl font-bold text-gray-800 mt-1">
-                Eco-Friendly Practices
-              </h3>
-              <p class="text-gray-600 mt-2">
-                Environmentally conscious approach using eco-friendly cleaning
-                products.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Sección Parallax -->
-      <section
-        class="relative flex items-center md:bg-fixed bg-center bg-cover"
-        style="
-          min-height: 60vh;
-          background-image: url('./assets/images/deep-cleaning.jpg');
-        "
-      >
-        <div
-          class="absolute top-0 right-0 w-full md:w-[40%] h-full bg-black bg-opacity-50 flex flex-col justify-center px-6 md:px-10"
-        >
-          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
-            Book Your Cleaning Service Today
-          </h2>
-          <a
-            href="sms:+16316803011"
-            style="width: fit-content"
-            class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-md shadow-lg transition"
-          >
-            GET AN ESTIMATE
-          </a>
-          <p class="mt-4 font-semibold text-white">OR Call Us: 631-680-3011</p>
-        </div>
-      </section>
-
-      <!-- My Story -->
-      <section id="about-me" class="bg-white py-20 px-4">
-        <div class="max-w-6xl mx-auto">
-          <div class="text-center mb-12">
-            <h2 class="text-4xl font-bold text-gray-900">About Charis</h2>
-          </div>
-          <div
-            class="flex flex-col md:flex-row items-start md:items-center gap-10"
-          >
-            <!-- Imagen -->
-            <div class="md:w-1/2 w-full">
-              <img
-                src="./assets/img/bg/diana.jpeg"
-                alt="Diana Cardona"
-                class="rounded-xl w-full h-auto object-cover"
-              />
-            </div>
-            <!-- Texto -->
-            <div class="md:w-1/2 w-full text-gray-800 space-y-4">
-              <h3
-                class="uppercase text-sm font-semibold tracking-wider text-gray-500"
-              >
-                Authentic Cleaning Services
-              </h3>
-              <p>
-                I arrived to the United States full of dreams when I was 16.
-                Since early on I was very passionate about organizing and
-                maintaining cleanliness around the places I inhabited. Inspired
-                by my grandmother, I honed my organizational and cleaning
-                skills. Through different life experiences, I met a key person
-                that became my mentor, Miriam, who allowed me to grow within the
-                field whilst I studied. It was through her mentorship that I
-                acquired the detail needed to provide an exceptional service and
-                quality control that focused on client satisfaction.
-              </p>
-              <p>
-                Excellence has been one of the key virtues of my job and it
-                reflects on the passion displayed through my cleaning and the
-                labor provided. These past 24 years, altogether with my team, I
-                have given my best effort to offer an outstanding service.
-              </p>
-              <p>
-                My family has always been my motivation and I hope to leave them
-                a legacy that highlights perseverance and excellence through my
-                entrepreneurial spirit!
-              </p>
-              <div class="pt-4">
-                <img
-                  style="width: 200px"
-                  src="./assets/img/bg/sign.png"
-                  alt="sign"
-                />
-                <img
-                  style="width: 200px"
-                  src="./assets/img/bg/with_god.jpg"
-                  alt="sign"
-                />
+            <div class="space-y-3 font-semibold text-base">
+              <div class="bg-gray-100 p-3 rounded-lg shadow-sm">
+                📞 (631) 680-3011
+              </div>
+              <div class="bg-gray-100 p-3 rounded-lg shadow-sm">
+                📞 (561) 710-0184
+              </div>
+              <div class="bg-gray-100 p-3 rounded-lg shadow-sm">
+                ⭐️ 5 Star Service
+              </div>
+              <div class="bg-gray-100 p-3 rounded-lg shadow-sm">
+                🏆 20+ Years Experience
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      <!-- Non Toxic Products -->
-      <section class="py-12 bg-gray-100 fade-section">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-          <h2 class="text-2xl md:text-3xl font-bold mb-4">
-            We use only Non Toxic &amp; Non Allergenic Cleaning Products and
-            Methods
-          </h2>
-          <p class="text-gray-700 mb-6">
-            Our goal is to ensure that not only does your home shine, but it’s
-            also safe for you, your family, and the environment.
-          </p>
-          <div class="flex justify-center">
-            <img
-              src="./assets/img/bg/clean.png"
-              alt="Eco Friendly Cleaning"
-              class="w-full md:w-1/2 rounded shadow"
-            />
-          </div>
-        </div>
-      </section>
-
-      <!-- Testimonials -->
-      <section class="bg-[#F0F8FF] py-16 px-4">
-        <div class="max-w-6xl mx-auto text-center mb-8">
-          <p class="text-sm font-bold uppercase tracking-widest text-gray-500">
-            HAPPY CLIENTS SAY
-          </p>
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2">
-            Testimonials
-          </h2>
-        </div>
-        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-          <!-- Testimonio 1 -->
-          <div class="flex flex-col items-start space-y-4">
-            <div class="text-yellow-500 text-xl">
-              &#9733;&#9733;&#9733;&#9733;&#9733;
-            </div>
-            <p class="text-gray-700 leading-relaxed">
-              "Charis Maids exceeded my expectations! Their attention to detail
-              is unmatched."
-            </p>
-            <div class="flex items-center space-x-3">
-              <img
-                src="/assets/img/bg/user.png"
-                alt="Michael Johnson"
-                class="w-10 h-10 rounded-full object-cover"
-              />
-              <span class="font-semibold text-gray-800">Michael Johnson</span>
-            </div>
-          </div>
-
-          <!-- Testimonio 2 -->
-          <div class="flex flex-col items-start space-y-4">
-            <div class="text-yellow-500 text-xl">
-              &#9733;&#9733;&#9733;&#9733;&#9733;
-            </div>
-            <p class="text-gray-700 leading-relaxed">
-              "I recommend Charis Maids to everyone. Their professionalism is
-              exceptional."
-            </p>
-            <div class="flex items-center space-x-3">
-              <img
-                src="./assets/img/bg/user.png"
-                alt="Emily White"
-                class="w-10 h-10 rounded-full object-cover"
-              />
-              <span class="font-semibold text-gray-800">Emily White</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA Final -->
-      <section class="py-24 bg-gray-200 fade-section">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-          <h2 class="text-2xl md:text-3xl font-bold mb-4">
-            Get Your Home Sparkling Clean Now!
-          </h2>
-          <a
-            href="sms:+16316803011"
-            class="inline-block bg-blue-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-700 transition"
+          <!-- Versión desktop -->
+          <div
+            class="hidden md:flex max-w-6xl mx-auto flex-col md:flex-row items-center justify-center gap-10"
           >
-            GET AN ESTIMATE
-          </a>
-          <p class="mt-4">
-            Try Charis Maids, you will love us. <br />
-            Questions? (631)680-3011 • (561)710-0184
-          </p>
-        </div>
-      </section>
+            <!-- Imagen de Persona -->
+            <div
+              class="w-60 h-60 md:w-80 md:h-80 overflow-hidden rounded-2xl shadow-md md:shadow-lg"
+            >
+              <img
+                src="./assets/img/bg/charis-person.jpeg"
+                alt="Charis Maids Team Member"
+                class="w-full h-full object-cover"
+              />
+            </div>
 
-      <!-- Footer -->
-      <footer class="bg-gray-900 text-gray-300 py-8 fade-section">
-        <div
-          class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8"
+            <!-- Tarjeta de Información -->
+            <div
+              class="text-white p-6 md:p-8 rounded-2xl max-w-xl text-center md:text-left"
+            >
+              <h1 class="text-3xl md:text-5xl font-bold mb-4">
+                Welcome to Charis Maids!
+              </h1>
+              <p class="text-lg md:text-xl mb-4 md:mb-6">
+                Trusted. Licensed. Insured. Exceptional Service.
+              </p>
+              <div
+                class="flex flex-col md:flex-wrap md:flex-row gap-2 md:gap-4 text-base md:text-lg font-semibold"
+              >
+                <span>(631) 680-3011</span>
+                <span>(561) 710-0184</span>
+                <span>5 Star Service</span>
+                <span>20+ Years Experience</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- About Charis Maids -->
+        <section class="bg-white py-16 px-4">
+          <div
+            class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8"
+          >
+            <!-- Imagen -->
+            <div class="md:w-1/2 flex justify-center">
+              <img
+                src="./assets/img/bg/people-small.png"
+                alt="Diana Cardona"
+                class="rounded-xl w-full max-w-sm object-cover"
+              />
+            </div>
+            <!-- Texto -->
+            <div class="md:w-1/2">
+              <h3
+                class="text-xs font-bold tracking-wider text-gray-500 uppercase mb-2"
+              >
+                AUTHENTIC CLEANING SERVICES
+              </h3>
+              <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                About Charis Maids
+              </h2>
+              <p class="text-gray-700 mb-3">
+                Charis Maids is dedicated to providing top-notch cleaning
+                services tailored to meet your unique needs. Established with a
+                focus on excellence, we proudly serve satisfied clients
+                throughout the Hamptons. Whether you need weekly, bi-weekly, or
+                monthly cleaning services, we offer flexible scheduling to
+                ensure your home or office stays spotless, organized, and
+                refreshed.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Our Cleaning Services -->
+        <section
+          style="background-color: #f0f8ff"
+          class="py-16 px-4"
+          id="services"
         >
-          <div>
-            <h3 class="text-white text-xl font-bold mb-4">About Us</h3>
-            <p class="text-sm">
-              Charis Maids is committed to providing a professional, reliable
-              cleaning experience. Licensed &amp; Insured with over 20 years of
-              experience.
+          <div class="max-w-6xl mx-auto text-center">
+            <p
+              class="text-sm font-bold tracking-wider text-gray-500 uppercase mb-2"
+            >
+              QUALITY CLEANING SERVICES
+            </p>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+              Our Cleaning Services
+            </h2>
+          </div>
+
+          <!-- Fila 1 -->
+          <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Housekeeping Services -->
+            <div>
+              <img
+                src="./assets/images/housekeeping.webp"
+                alt="Housekeeping Services"
+                class="w-full h-auto object-cover rounded-xl mb-4"
+              />
+              <h3 class="text-xl font-bold text-gray-800 mb-2">
+                Housekeeping Services
+              </h3>
+              <ul
+                style="font-size: 11px"
+                class="list-disc list-inside text-gray-600 leading-relaxed"
+              >
+                Elevate your home experience with our premium housekeeping
+                services in the Hamptons, NY. We specialize in high-end,
+                detail-oriented cleaning tailored to your lifestyle—whether it’s
+                your primary residence, vacation home, or rental property. Our
+                trusted team provides consistent, discreet, and meticulous care,
+                ensuring your home is always immaculate, welcoming, and
+                effortlessly maintained.
+              </ul>
+            </div>
+
+            <!-- Post Construction Cleaning -->
+            <div>
+              <img
+                src="./assets/images/post-construction.webp"
+                alt="Post Construction Cleaning"
+                class="w-full h-auto object-cover rounded-xl mb-4"
+              />
+              <h3 class="text-xl font-bold text-gray-800 mb-2">
+                Post Construction Cleaning
+              </h3>
+              <ul
+                style="font-size: 11px"
+                class="list-disc list-inside text-gray-600 leading-relaxed"
+              >
+                After the dust settles, let us bring the shine. Our
+                post-construction cleaning services in the Hamptons, NY, are
+                designed to transform newly built or renovated spaces into
+                pristine, move-in ready homes. We handle every detail with
+                precision—from fine dust removal to deep cleaning of every
+                surface—ensuring your property looks flawless and polished.
+              </ul>
+            </div>
+
+            <!-- Deep Cleaning -->
+            <div>
+              <img
+                src="./assets/images/deep-cleaning2.webp"
+                alt="Deep Cleaning"
+                class="w-full h-auto object-cover rounded-xl mb-4"
+              />
+              <h3 class="text-xl font-bold text-gray-800 mb-2">
+                Deep Cleaning
+              </h3>
+              <ul
+                style="font-size: 11px"
+                class="list-disc list-inside text-gray-600 leading-relaxed"
+              >
+                Our deep cleaning service goes beyond the surface to refresh and
+                restore every corner of your home. Perfect for seasonal
+                openings, special occasions, or a thorough reset, we focus on
+                the details others overlook—baseboards, high-touch areas, under
+                furniture, and more.
+                <br />
+                Serving homes across the Hamptons, NY, our experienced team
+                ensures a meticulous clean that leaves your space feeling
+                renewed, sanitized, and truly spotless.
+              </ul>
+            </div>
+          </div>
+
+          <!-- Fila 2 -->
+          <div
+            class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mt-10"
+          >
+            <!-- Office Cleaning -->
+            <div>
+              <img
+                src="./assets/images/office-cleaning.webp"
+                alt="Office Cleaning"
+                class="w-full h-auto object-cover rounded-xl mb-4"
+              />
+              <h3 class="text-xl font-bold text-gray-800 mb-2">
+                Office Cleaning
+              </h3>
+              <ul
+                style="font-size: 11px"
+                class="list-disc list-inside text-gray-600 leading-relaxed"
+              >
+                Keep your workspace pristine and professional with our reliable
+                office cleaning services in the Hamptons. We offer flexible
+                scheduling, including evening and after-hours cleanings, for
+                both commercial and home offices—ensuring a clean, organized,
+                and healthy environment tailored to your needs.
+              </ul>
+            </div>
+
+            <!-- Home Organizing -->
+            <div>
+              <img
+                src="./assets/images/home-organizing.webp"
+                alt="Home Organizing"
+                class="w-full h-auto object-cover rounded-xl mb-4"
+              />
+              <h3 class="text-xl font-bold text-gray-800 mb-2">
+                Home Organizing
+              </h3>
+              <ul
+                style="font-size: 11px"
+                class="list-disc list-inside text-gray-600 leading-relaxed"
+              >
+                Bring order and peace to your space with our personalized home
+                organizing services. From closets to kitchens, we create
+                stylish, functional systems that fit your lifestyle and elevate
+                your Hamptons home.
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- What Sets Charis Maids Apart -->
+        <section class="py-24 bg-white">
+          <div class="max-w-6xl mx-auto px-4 text-center">
+            <p
+              class="text-xs font-semibold text-gray-500 tracking-widest uppercase mb-2"
+            >
+              AUTHENTICITY GUARANTEED
+            </p>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+              What Sets Charis Maids Apart?
+            </h2>
+            <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div>
+                <span class="text-blue-600 text-2xl font-extrabold">01.</span>
+                <h3 class="text-xl font-bold text-gray-800 mt-1">
+                  Professional Crew
+                </h3>
+                <p class="text-gray-600 mt-2">
+                  Highly trained and experienced cleaners dedicated to
+                  exceptional service.
+                </p>
+              </div>
+              <div>
+                <span class="text-blue-600 text-2xl font-extrabold">02.</span>
+                <h3 class="text-xl font-bold text-gray-800 mt-1">
+                  Tailored Cleaning
+                </h3>
+                <p class="text-gray-600 mt-2">
+                  Customized cleaning solutions that fit your specific
+                  requirements and schedule.
+                </p>
+              </div>
+              <div>
+                <span class="text-blue-600 text-2xl font-extrabold">03.</span>
+                <h3 class="text-xl font-bold text-gray-800 mt-1">
+                  Eco-Friendly Practices
+                </h3>
+                <p class="text-gray-600 mt-2">
+                  Environmentally conscious approach using eco-friendly cleaning
+                  products.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sección Parallax -->
+        <section
+          id="contact"
+          class="relative flex items-center md:bg-fixed bg-center bg-cover"
+          style="
+            min-height: 60vh;
+            background-image: url('./assets/images/deep-cleaning.jpg');
+          "
+        >
+          <div
+            class="absolute top-0 right-0 w-full md:w-[40%] h-full bg-black bg-opacity-50 flex flex-col justify-center px-6 md:px-10"
+          >
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+              Book Your Cleaning Service Today
+            </h2>
+            <a
+              href="sms:+16316803011"
+              style="width: fit-content"
+              class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-md shadow-lg transition"
+            >
+              GET AN ESTIMATE
+            </a>
+            <p class="mt-4 font-semibold text-white">
+              OR Call Us: 631-680-3011
             </p>
           </div>
-          <div>
-            <h3 class="text-white text-xl font-bold mb-4">Services</h3>
-            <ul class="text-sm space-y-2">
-              <li>House Cleaning</li>
-              <li>Deep Cleaning</li>
-              <li>Post Construction</li>
-              <li>Office Cleaning</li>
-              <li>Home Organizing</li>
-            </ul>
+        </section>
+
+        <!-- My Story -->
+        <section id="about-me" class="bg-white py-20 px-4">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+              <h2 class="text-4xl font-bold text-gray-900">About Charis</h2>
+            </div>
+            <div
+              class="flex flex-col md:flex-row items-start md:items-center gap-10"
+            >
+              <!-- Imagen -->
+              <div class="md:w-1/2 w-full">
+                <img
+                  src="./assets/img/bg/diana.jpeg"
+                  alt="Diana Cardona"
+                  class="rounded-xl w-full h-auto object-cover"
+                />
+              </div>
+              <!-- Texto -->
+              <div class="md:w-1/2 w-full text-gray-800 space-y-4">
+                <h3
+                  class="uppercase text-sm font-semibold tracking-wider text-gray-500"
+                >
+                  Authentic Cleaning Services
+                </h3>
+                <p>
+                  I arrived to the United States full of dreams when I was 16.
+                  Since early on I was very passionate about organizing and
+                  maintaining cleanliness around the places I inhabited.
+                  Inspired by my grandmother, I honed my organizational and
+                  cleaning skills. Through different life experiences, I met a
+                  key person that became my mentor, Miriam, who allowed me to
+                  grow within the field whilst I studied. It was through her
+                  mentorship that I acquired the detail needed to provide an
+                  exceptional service and quality control that focused on client
+                  satisfaction.
+                </p>
+                <p>
+                  Excellence has been one of the key virtues of my job and it
+                  reflects on the passion displayed through my cleaning and the
+                  labor provided. These past 24 years, altogether with my team,
+                  I have given my best effort to offer an outstanding service.
+                </p>
+                <p>
+                  My family has always been my motivation and I hope to leave
+                  them a legacy that highlights perseverance and excellence
+                  through my entrepreneurial spirit!
+                </p>
+                <div class="pt-4">
+                  <img
+                    style="width: 200px"
+                    src="./assets/img/bg/sign.png"
+                    alt="sign"
+                  />
+                  <img
+                    style="width: 200px"
+                    src="./assets/img/bg/with_god.jpg"
+                    alt="sign"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
-          <div>
-            <h3 class="text-white text-xl font-bold mb-4">Contact Us</h3>
-            <p class="text-sm">
-              <strong>Phone:</strong> (631) 680-3011 / (561) 710-0184 <br />
-              <strong>Email:</strong> dc@charismaids.com <br />
-              <strong>Location:</strong> The Hamptons, NY - Palm Beach, FL
+        </section>
+
+        <!-- Non Toxic Products -->
+        <section class="py-12 bg-gray-100">
+          <div class="max-w-6xl mx-auto px-4 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4">
+              We use only Non Toxic &amp; Non Allergenic Cleaning Products and
+              Methods
+            </h2>
+            <p class="text-gray-700 mb-6">
+              Our goal is to ensure that not only does your home shine, but it’s
+              also safe for you, your family, and the environment.
+            </p>
+            <div class="flex justify-center">
+              <img
+                src="./assets/img/bg/clean.png"
+                alt="Eco Friendly Cleaning"
+                class="w-full md:w-1/2 rounded shadow"
+              />
+            </div>
+          </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="bg-[#F0F8FF] py-16 px-4">
+          <div class="max-w-6xl mx-auto text-center mb-8">
+            <p
+              class="text-sm font-bold uppercase tracking-widest text-gray-500"
+            >
+              HAPPY CLIENTS SAY
+            </p>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2">
+              Testimonials
+            </h2>
+          </div>
+          <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Testimonio 1 -->
+            <div class="flex flex-col items-start space-y-4">
+              <div class="text-yellow-500 text-xl">
+                &#9733;&#9733;&#9733;&#9733;&#9733;
+              </div>
+              <p class="text-gray-700 leading-relaxed">
+                "Charis Maids exceeded my expectations! Their attention to
+                detail is unmatched."
+              </p>
+              <div class="flex items-center space-x-3">
+                <img
+                  src="/assets/img/bg/user.png"
+                  alt="Michael Johnson"
+                  class="w-10 h-10 rounded-full object-cover"
+                />
+                <span class="font-semibold text-gray-800">Michael Johnson</span>
+              </div>
+            </div>
+
+            <!-- Testimonio 2 -->
+            <div class="flex flex-col items-start space-y-4">
+              <div class="text-yellow-500 text-xl">
+                &#9733;&#9733;&#9733;&#9733;&#9733;
+              </div>
+              <p class="text-gray-700 leading-relaxed">
+                "I recommend Charis Maids to everyone. Their professionalism is
+                exceptional."
+              </p>
+              <div class="flex items-center space-x-3">
+                <img
+                  src="./assets/img/bg/user.png"
+                  alt="Emily White"
+                  class="w-10 h-10 rounded-full object-cover"
+                />
+                <span class="font-semibold text-gray-800">Emily White</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CTA Final -->
+        <section class="py-24 bg-gray-200">
+          <div class="max-w-6xl mx-auto px-4 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4">
+              Get Your Home Sparkling Clean Now!
+            </h2>
+            <a
+              href="sms:+16316803011"
+              class="inline-block bg-blue-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-700 transition"
+            >
+              GET AN ESTIMATE
+            </a>
+            <p class="mt-4">
+              Try Charis Maids, you will love us. <br />
+              Questions? (631)680-3011 • (561)710-0184
             </p>
           </div>
-        </div>
-        <div class="text-center mt-6 text-sm text-gray-500">
-          &copy; 2025 Charis Maids
-        </div>
-      </footer>
+        </section>
+      </main>
     </div>
 
-    <!-- Archivo de JavaScript personalizado -->
-    <script src="js/script.js"></script>
+    <!-- ⬇ aquí se inyectará el footer -->
+    <div id="site-footer"></div>
   </body>
 </html>
